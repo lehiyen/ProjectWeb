@@ -20,10 +20,10 @@ public class doShop extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Collection<Product> value = new ProductEntity().getAllProduct();
-        request.setAttribute("list5_2", value);
+        request.setAttribute("list2_2", value);
 
         Collection<Product> value4 = new ProductEntity().getDiscountProducts();
-        request.setAttribute("list5_1", value4);
+        request.setAttribute("list2_1", value4);
 
         request.getRequestDispatcher("shop-grid.jsp").forward(request, response);
     }
