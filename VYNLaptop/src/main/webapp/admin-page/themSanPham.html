@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+        <title>Thêm sản phẩm</title>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/extra-libs/multicheck/multicheck.css">
+        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="dist/css/style.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="styleAdmin/style.css">
+        
+    </head>
+    
+    <body>
+      
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+       
+        <div id="main-wrapper">
+           
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin5">
+                        <!-- This is for the sidebar toggle which is visible on mobile only -->
+                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        <!-- ============================================================== -->
+                        <!-- Logo -->
+                        <!-- ============================================================== -->
+                        <a class="navbar-brand" href="index.html">
+                            <!-- Logo icon -->
+                            <b class="logo-icon p-l-10">
+                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                                <!-- Dark Logo icon -->
+                                <img class="logo-admin" src="assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                               
+                            </b>
+                            <!--End Logo icon -->
+                             <!-- Logo text -->
+                            <span class="logo-text">
+                                 <!-- dark Logo text -->
+                                 <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" />
+                                
+                            </span>
+                           
+                        </a>
+                        
+                        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                    </div>
+                    <!-- ============================================================== -->
+                    
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                  
+                </nav>
+            </header >
+            <!-- ============================================================== -->
+            <!-- End Topbar header -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- ============================================================== -->
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="p-t-30">
+                            
+                            </li>
+                           
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="TrangChu.html" aria-expanded="false"><i class="fas fa-home"></i><span class="hide-menu">Trang chủ</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">Sản phẩm </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="tongquan.html" class="sidebar-link"><span class="hide-menu"> Tổng quan sản phẩm </span></a></li>
+                                    <li class="sidebar-item"><a href="themSanPham.html" class="sidebar-link"><span class="hide-menu">Thêm sản phẩm </span></a></li>
+                                    <li class="sidebar-item"><a href="HinhAnh.html" class="sidebar-link"><span class="hide-menu">Quản lí hình ảnh </span></a></li>
+                                    <li class="sidebar-item"><a href="Banner.html" class="sidebar-link"><span class="hide-menu">Banner sản phẩm </span></a></li>
+                                    
+                                </ul>
+                            </li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Đơn hàng </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="ĐonhangDangGiao.html" class="sidebar-link"><span class="hide-menu"> Đang giao  </span></a></li>
+                                    <li class="sidebar-item"><a href="GiaothangCong.html" class="sidebar-link"><span class="hide-menu">Giao thành công</span></a></li>
+                                    <li class="sidebar-item"><a href="ĐonhangDangGiao.html" class="sidebar-link"><span class="hide-menu">Đơn hàng bị hủy </span></a></li>
+                                    <li class="sidebar-item"><a href="ĐonhangDangGiao.html" class="sidebar-link"><span class="hide-menu">Đơn hàng mới </span></a></li>
+                                  
+                                    
+                                </ul>
+                            </li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="khuyenmai.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Khuyến mãi</span></a></li>
+                            
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">  <i class="fas fa-address-book"></i><span class="hide-menu">Quản lí ài khoản </span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="ThemTaiKhoan.html" class="sidebar-link"><span class="hide-menu"> Thêm tài khoản  </span></a></li>
+                                    <li class="sidebar-item"><a href="TongQuanTK.html" class="sidebar-link"><span class="hide-menu">Tổng quan </span></a></li>
+                                  
+                                    
+                                </ul>
+                            </li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="fas fa-sign-out-alt"></i><span class="hide-menu">Đăng xuất</span></a></li>
+                           
+                            
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </aside>
+            <!-- ============================================================== -->
+            <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Page wrapper  -->
+            <!-- ============================================================== -->
+            <div class="page-wrapper">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-12 d-flex no-block align-items-center">
+                            <h4 class="page-title">Thêm sản phẩm</h4>
+                            <div class="ml-auto text-right">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-add">
+                    <span id="click-if">Thông tin cơ bản</span>
+                    <span id="click-config">Cấu hình máy</span>
+
+                </div>
+
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
+                <div class="container-fluid">
+                    <!-- ============================================================== -->
+                    <!-- Start Page Content -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-12">
+                    
+                            <div class="card">
+                                <div class="card-body">
+                                   
+                                    <div class="form" id="form">
+                                        <form action="">
+                                            <div class="picture">
+                                                <label for="">Hình ảnh sản phẩm</label>
+                                               <div class="upload">
+                                                <i class="fas fa-upload"></i>
+                                                <p class="text-upload">Upload</p>
+                                               </div>
+                                            </div>
+                                            <div class="detail-product">
+                                                <span class="name-product">Tên sản phẩm</span>
+                                                <input class="input-name" type="text" name="" id="" placeholder="EX: Dell ProMAx">
+                                            </div>
+                                            <div class="detail-product">
+                                                <span style="margin-right: 250px !important;" class="name-product">Giá</span>
+                                                <input class="input-name" type="text" name="" id="" placeholder="EX: 200000 VND">
+                                            </div>
+                                            <div class="detail-product">
+                                                <span class="name-product">Hãng sản xuất</span>
+                                                <input class="input-name" type="text" name="" id="" placeholder=" EX: DELL">
+                                            </div>
+                                            <div class="detail-product">
+                                                <span style="margin-right: 213px !important;" class="name-product">Số lượng</span>
+                                                <input class="input-name" type="text" name="" id="" placeholder="EX: 100">
+                                            </div>
+                                        </form>
+                                    </div>
+                                        
+                                    <div class="config" id="config">
+                                        <table class="table">
+                                            <tr>
+                                                <td>Thương hiệu</td>
+                                                <td ><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr >
+                                                <td ><b>Bảo hành</b></td>
+                                                <td ><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr >
+                                                <th colspan="2" style="background-color: #f5f5f5;">Thông Tin chung</th>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Màu</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Series laptop</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Part-number</b></td>
+                                                <td>
+                                                    <input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" style="background-color: #f5f5f5;">Cấu hình chi tiết</th>
+                                            </tr>
+                                            <tr>
+                                                <td><b> Thế hệ CPU </b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>CPU</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Chip đồ họa</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>RAM</b></td>
+                                                <td> <input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Monitor</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Lưu trữ</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Số cổng lưu trữ tối đa</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td><b>Kiểu khe M.2 hỗ trợ</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Công suất hình</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Cổng kết nối</b></td>
+                                                <td>
+                                                    <input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Kết nối không dây</b></td>
+                                                <td>
+                                                    <input class="table-input" type="text" name="" id="" placeholder=""> </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Bàn phím</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Hệ điều hành</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Kích thước</b></td>
+                                                <td>
+                                                    <input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Pin</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Khối lượng</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" style="background-color: #f5f5f5;">Thông tin khác </th>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Bảo mật</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Đèn LED</b></td>
+                                                <td><input class="table-input" type="text" name="" id="" placeholder=""></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                   
+    
+                                </div>
+                            </div>
+                            <div class="btn-update">
+                                <input type="button" value="LƯU">
+            
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End PAge Content -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Right sidebar -->
+                    <!-- ============================================================== -->
+                    <!-- .right-sidebar -->
+                    <!-- ============================================================== -->
+                    <!-- End Right sidebar -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Container fluid  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <footer class="footer text-center">
+                    All Rights Reserved by Gropu 32. Designed and Developed by <a href="https://wrappixel.com">VYN</a>.
+                </footer>
+                <!-- ============================================================== -->
+                <!-- End footer -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+        <!--Wave Effects -->
+        <script src="dist/js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="dist/js/sidebarmenu.js"></script>
+        <!--Custom JavaScript -->
+        <script src="dist/js/custom.min.js"></script>
+        <!-- this page js -->
+        <script src="assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+        <script src="assets/extra-libs/multicheck/jquery.multicheck.js"></script>
+        <script src="assets/extra-libs/DataTables/datatables.min.js"></script>
+        
+        <script>
+            document.getElementById("click-if").addEventListener("click" , function(){
+                document.getElementById("form").style.display="flex"
+                document.getElementById("config").style.display="none"
+                document.getElementById("click-if").style.borderBottom="solid 2px "
+                document.getElementById("click-config").style.borderBottom="none"
+
+            })
+            document.getElementById("click-config").addEventListener("click" ,function(){
+                document.getElementById("form").style.display="none"
+                document.getElementById("config").style.display="block"
+                document.getElementById("click-if").style.borderBottom="none "
+                document.getElementById("click-config").style.borderBottom="solid 2px"
+            })
+
+        </script>
+    </body>
+    
+
+</html>

@@ -61,35 +61,34 @@
 
 <!--  Container -->
 <div class="change-password">
+    <form action="changePassword" method="get">
     <div class="user-container">
-        <form action="">
+
             </section>
             <h3 class="user-h3">Thay đổi mật khẩu</h3>
             <section style="margin-bottom: 20px;">
-                <div class="user-div">
-                    <label class="label-of-email" >Email hoặc số điện thoại </label>
-                    <p>18130162@st.hcmuaf.edu.vn</p>
-                </div>
+                <p style="color: red"><%= request.getAttribute("mess") == null?"":request.getAttribute("mess")%></p>
+
                 <div class="user-div">
                     <label class="label-of-pass-old" for="surname">Mật khẩu cũ * </label>
-                    <input id="surname" name="surname" type="text" class="required form-control" value="">
+                    <input id="surname" name="oldpass" type="text" class="required form-control" value="">
                 </div>
                 <div class="user-div">
                     <label class="label-of-pass-new" for="email">Mật khẩu mới * </label>
-                    <input id="email" name="email" type="text" class="required email form-control" value="">
+                    <input id="email" name="newpass1" type="text" class="required email form-control" value="">
                 </div>
                 <div class="user-div">
                     <label class="label-of-repeat" for="address">Xác nhận lại mật khẩu *</label>
-                    <input id="address" name="address" type="text" class=" form-control" value="">
+                    <input id="address" name="newpass2" type="text" class=" form-control" value="">
                 </div>
                 <p style="color: red;"> * Bắt buộc nhập</p>
             </section>
-        </form>
 
     </div>
 
     <div class="line"></div>
-    <div class="div-btn"> <button class="save-info">Lưu</button></div>
+    <div class="div-btn"> <button type="submit" class="save-info">Lưu</button></div>
+    </form>
 </div>
 <!--  End container -->
 

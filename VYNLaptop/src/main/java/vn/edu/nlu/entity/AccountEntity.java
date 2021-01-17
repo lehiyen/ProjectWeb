@@ -1,6 +1,6 @@
 package vn.edu.nlu.entity;
 
-import vn.edu.nlu.beans.Account;
+import vn.edu.nlu.beans.Khachhang;
 import vn.edu.nlu.db.ConnectionDB;
 
 import java.sql.Connection;
@@ -10,19 +10,26 @@ import java.sql.SQLException;
 
 public class AccountEntity {
     //phuong thuc kiem tra xem tai khoan co ton tai trong sql khong (login)
-    public Account checkLogin(String username, String password) {
+    public Khachhang checkLogin(String username, String password) {
         try {
             Connection con = ConnectionDB.connect();
-            String sql = "select id, username, password, tenKH from khachhang where username = ? \n and password = ?";
+            String sql = "select * from khachhang where username = ? \n and password = ?";
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1, username);
             pre.setString(2, password);
             ResultSet rs = pre.executeQuery();
             while (rs.next()){
-                return new Account(rs.getInt("id"),
+                return new Khachhang(rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("tenKH"));
+                        rs.getString("maKH"),
+                        rs.getString("anh"),
+                        rs.getString("tenKH"),
+                        rs.getString("hoKH"),
+                        rs.getString("diachi"),
+                        rs.getNString("email"),
+                        rs.getLong("sdt"),
+                        rs.getString("maQMK"));
             }
 
         } catch (SQLException throwables) {
@@ -31,5 +38,36 @@ public class AccountEntity {
             e.printStackTrace();
         }
         return null;
+    }
+    //doi mat khau nguoi dung
+    public boolean changePassword(String oldPass, String newPass1, String newPass2) {
+        boolean result = false;
+        try {
+            boolean check = false;
+            Connection con = ConnectionDB.connect();
+            String sql = "select * from khachhang where password like ?";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1, oldPass);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()){
+                check = true;
+            }
+            if(check){
+                if(newPass1.equals(newPass2)) {
+                    String sql1 = "update khachhang set password = ? where password like ?";
+                    PreparedStatement pre1 = con.prepareStatement(sql1);
+                    pre1.setString(1, newPass2);
+                    pre1.setString(2, oldPass);
+                    int rs1 = pre1.executeUpdate();
+                    result = true;
+                }
+            }else{
+            result = false;}
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

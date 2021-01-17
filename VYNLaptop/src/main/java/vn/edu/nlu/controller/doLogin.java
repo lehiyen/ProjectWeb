@@ -1,7 +1,6 @@
 package vn.edu.nlu.controller;
 
-import vn.edu.nlu.beans.Account;
-import vn.edu.nlu.db.ConnectionDB;
+import vn.edu.nlu.beans.Khachhang;
 import vn.edu.nlu.entity.AccountEntity;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(name = "login", urlPatterns = "/login")
 public class doLogin extends HttpServlet {
@@ -28,9 +26,9 @@ public class doLogin extends HttpServlet {
             session.setAttribute("pw", pass);
 
             AccountEntity ae = new AccountEntity();
-            Account u = ae.checkLogin(uname, pass);
+            Khachhang u = ae.checkLogin(uname, pass);
             if (u != null) {
-                response.sendRedirect("/VYNLaptop/home");
+                response.sendRedirect("index1.jsp");
             } else {
                 request.setAttribute("err", "Sai username hoặc password");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

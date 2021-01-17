@@ -95,7 +95,7 @@
         <form id="form" method="post" action="login">
             <img class="avatar" src="login/image/undraw_profile_pic_ic5t.svg" alt="">
             <h2>Đăng nhập</h2> <br>
-            <p><%= request.getAttribute("err") == null?"":request.getAttribute("err")%></p>
+            <p style="color: red"><%= request.getAttribute("err") == null?"":request.getAttribute("err")%></p>
 
             <div class="input-div one">
                 <div class="i">

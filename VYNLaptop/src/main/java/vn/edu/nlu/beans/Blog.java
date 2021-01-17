@@ -11,12 +11,24 @@ public class Blog implements Serializable {
     private String tenblog;
     private Date ngaydang;
     private String hinhanh;
+    private String noidung;
 
     public Blog(String chude, String tenblog, Date ngaydang, String hinhanh){
         this.chude = chude;
         this.tenblog = tenblog;
         this.ngaydang = ngaydang;
         this.hinhanh = hinhanh;
+    }
+
+    public Blog(int cid, int id, String mablog, String chude, String tenblog, Date ngaydang, String hinhanh, String noidung) {
+        this.cid = cid;
+        this.id = id;
+        this.mablog = mablog;
+        this.chude = chude;
+        this.tenblog = tenblog;
+        this.ngaydang = ngaydang;
+        this.hinhanh = hinhanh;
+        this.noidung = noidung;
     }
 
     public void setChude(String chude) {
