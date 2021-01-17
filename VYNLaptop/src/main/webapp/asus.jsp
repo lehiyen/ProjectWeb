@@ -89,13 +89,13 @@
     <div class="humberger__menu__widget">
 
         <div class="header__top__right__auth">
-            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+            <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+            <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
             <!--<li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
                     <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -105,7 +105,7 @@
                 </ul>
             </li>
         -->
-            <li><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/shop">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
                         </div>
                     </div>
                 </div>
@@ -159,14 +159,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li ><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+                        <li ><a href="/VYNLaptop/shop">Cửa hàng</a></li>
                         <!--<li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -175,7 +175,7 @@
                                 <li><a href="./blog-details.jsp">Blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
                         <li ><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -208,17 +208,19 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="asus.jsp">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                            <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                            <%--                        <li><a href="#">ACER</a></li>--%>
+                            <%--                        <li><a href="#">HP</a></li>--%>
+                            <%--                        <li><a href="#">DELL</a></li>--%>
+                            <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                            <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                            <%--                        <li><a href="#">VIVO</a></li>--%>
+                            <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                            <%--                        <li><a href="#">LENOVO</a></li>--%>
+                            <%--                        <li><a href="#">SONY</a></li>--%>
+                            <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -254,8 +256,8 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
-                        <span>ASUS</span>
+                        <a href="/VYNLaptop/home">Trang chủ</a>
+                        <span>${title}</span>
                     </div>
                 </div>
             </div>
@@ -270,9 +272,11 @@
 <section class="featured spad">
     <div class="container">
         <div class="row featured__filter">
+<%--            start product--%>
+            <c:forEach items="${product}" var="p">
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_15_X509JP-EJ013T/as1.png">
+                    <div class="featured__item__pic set-bg" data-setbg="${p.hinhanh}">
                         <ul class="featured__item__pic__hover">
                             <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
                             <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
@@ -280,149 +284,18 @@
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="chitetsanpham.jsp">ASUS 15 X509JP-EJ013T</a> <br><br></h6>
-                        <h5>15.590.000 vnđ</h5> <br>
+                        <h6><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP}</a> <br><br></h6>
+                        <h5>${p.gia} vnđ</h5> <br>
                         <div>
                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_15_X509JP-EJ013T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
+                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="/VYNLaptop/product?maSP=${p.maSP}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_PRO_P1440UA-FQ0183/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="ASUS_PRO_P1440UA-FQ0183.jsp">ASUS PRO P1440UA-FQ0183</a> <br><br></h6>
-                        <h5>32.990.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_PRO_P1440UA-FQ0183.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_ROG_Strix_SCAR_II_GL504GM-ES312T/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="ASUS_ROG_Strix_SCAR_II_GL504GM-ES312T.jsp">ASUS ROG Strix SCAR II GL504GM-ES312T</a> </h6>
-                        <h5>49.990.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_ROG_Strix_SCAR_II_GL504GM-ES312T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_ROG_Zephyrus_S_GX531GM-ES004T/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="ASUS_ROG_Zephyrus_S_GX531GM-ES004T.jsp">ASUS ROG Zephyrus S GX531GM-ES004T </a></h6>
-                        <h5>51.990.00 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_ROG_Zephyrus_S_GX531GM-ES004T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_VivoBook_S14_S430UA-EB003T/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp">ASUS VivoBook S14 S430UA-EB003T</a></h6>
-                        <h5>18.990.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_VivoBook_S15_S531FA-BQ104T/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">ASUS VivoBook S15 S531FA-BQ104T</a></h6>
-                        <h5>17.590.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_ZenBook_Duo_UX481FL-BM048T/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">ASUS ZenBook Duo UX481FL-BM048T</a></h6>
-                        <h5>18.990.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="img/product/asus/ASUS_ZenBook_13_UX331UN-EG129TS/as1.png">
-                        <ul class="featured__item__pic__hover">
-                            <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" title="Thêm vào trang sản phẩm yêu thích"><i class="fa fa-heart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="#">ASUS ZenBook 13 UX331UN-EG129TS</a></h6>
-                        <h5>19.990.000 vnđ</h5> <br>
-                        <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
+<%--end product--%>
         </div>
     </div>
     <div class="product__pagination">

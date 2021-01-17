@@ -42,7 +42,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
+        <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -60,7 +60,7 @@
                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                        <li><a href="login.jsp">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -68,18 +68,9 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-            <!--<li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.jsp">Shop Details</a></li>
-                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                    <li><a href="./checkout.jsp">Check Out</a></li>
-                    <li><a href="./blog-details.jsp">Blog Details</a></li>
-                </ul>
-            </li>
-        -->
-            <li><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+            <li><a href="/YVNLaptop/shop">Cửa hàng</a></li>
+            <li><a href="/VYNLaptop/blog">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -128,7 +119,7 @@
                                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                                        <li><a href="login.jsp">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -142,23 +133,15 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li ><a href="./shop-grid.jsp">Cửa hàng</a></li>
-                        <!--<li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.jsp">Shop Details</a></li>
-                                <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                <li><a href="./checkout.jsp">Check Out</a></li>
-                                <li><a href="./blog-details.jsp">Blog Details</a></li>
-                            </ul>
-                        </li> -->
-                        <li><a href="./blog.jsp">Giới thiệu</a></li>
+                        <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+                        <li ><a href="/VYNLaptop/shop">Cửa hàng</a></li>
+                        <li><a href="./gioithieuVYN.jsp">Giới thiệu</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -191,17 +174,19 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="#">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                            <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                            <%--                        <li><a href="#">ACER</a></li>--%>
+                            <%--                        <li><a href="#">HP</a></li>--%>
+                            <%--                        <li><a href="#">DELL</a></li>--%>
+                            <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                            <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                            <%--                        <li><a href="#">VIVO</a></li>--%>
+                            <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                            <%--                        <li><a href="#">LENOVO</a></li>--%>
+                            <%--                        <li><a href="#">SONY</a></li>--%>
+                            <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -237,7 +222,7 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
+                        <a href="/VYNLaptop/home">Trang chủ</a>
                         <span>Thông tin tài khoản</span>
                     </div>
                 </div>
@@ -251,11 +236,11 @@
 <!--  Container -->
 <div class="user">
     <div class="user-container">
-        <form  action="#">
+        <form action="user" method="get">
             <div style="padding-top: 20px ;" class="user-div">
                 <h3  class="user-avatar">Avatar</h3>
                 <div class="avatar">
-                    <label class="label-avatar" for="avatar" id="btn-avatar"><img id="img" style="width: 150px;" src="img/product/asus/ASUS_15_X509JP-EJ013T/as1.png" alt=""></label>
+                    <label class="label-avatar" for="avatar" id="btn-avatar"><img id="img" style="width: 150px;" src="" alt=""></label>
 
                     <input type="file" id="avatar" class="change-avatar">
 
@@ -265,27 +250,27 @@
                 <h3 class="user-h3">Tài khoản</h3>
                 <section>
                     <div class="user-div">
-                        <label class="label-info-user" >Tên tài khoản</label>
-                        <input  id="userName" name="userName" type="text" class="required form-control" value="Võ Thi Nhân">
+                        <label class="label-info-user" >Tên đăng nhập</label>
+                        <input  id="username" name="username" type="text" class="required form-control">
                     </div>
                 </section>
                 <h3 class="user-h3">Thông tin người dùng</h3>
                 <section style="margin-bottom: 20px;">
                     <div class="user-div">
                         <label class="label-info-name" >Tên người dùng </label>
-                        <input id="name" name="name" type="text" class="required form-control" value="Nhân">
+                        <input id="name" name="name" type="text" class="required form-control">
                     </div>
                     <div class="user-div">
-                        <label class="label-info-first-name" for="surname">Họ người dùng </label>
-                        <input id="surname" name="surname" type="text" class="required form-control" value="Võ Thi">
+                        <label class="label-info-first-name">Họ người dùng </label>
+                        <input id="surname" name="surname" type="text" class="required form-control">
                     </div>
                     <div class="user-div">
-                        <label class="label-info-phone-email" for="email">Email hoặc số điện thoại </label>
-                        <input id="email" name="email" type="text" class="required email form-control" value="18130162@hcmuaf.edu.vn">
+                        <label class="label-info-phone-">Số điện thoại</label>
+                        <input id="sdt" name="sdt" type="number"  class="required form-control" style="margin-left: 100px">
                     </div>
                     <div class="user-div">
                         <label class="label-info-address" for="address">Địa chỉ</label>
-                        <input id="address" name="address" type="text" class=" form-control" value=" Trường Đại học Nông Lâm TP.HCM">
+                        <input id="address" name="address" type="text" class=" form-control" >
                     </div>
                 </section>
 
@@ -296,7 +281,7 @@
 
     </div>
     <div class="line"></div>
-    <div class="div-btn"> <button class="save-info">Lưu</button></div>
+    <div class="div-btn"> <button type="submit" class="save-info">Lưu</button></div>
 
 </div>
 <!--  End container -->
@@ -311,7 +296,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                        <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: 113/1/8 Hoàng Diệu 2, phường Linh Trung, quận Thủ Đức</li>
@@ -330,10 +315,10 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href=".Register.jsp">Đăng ký tài khoản</a></li>
+                        <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </div>

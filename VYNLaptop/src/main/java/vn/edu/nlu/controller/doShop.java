@@ -1,5 +1,6 @@
 package vn.edu.nlu.controller;
 
+import vn.edu.nlu.beans.Category;
 import vn.edu.nlu.beans.Product;
 import vn.edu.nlu.entity.ProductEntity;
 
@@ -24,6 +25,9 @@ public class doShop extends HttpServlet {
 
         Collection<Product> value4 = new ProductEntity().getDiscountProducts();
         request.setAttribute("list5_1", value4);
+
+        Collection<Category> category = new ProductEntity().getAllCategory();
+        request.setAttribute("category", category);
 
         request.getRequestDispatcher("shop-grid.jsp").forward(request, response);
     }

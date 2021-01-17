@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -7,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fon-awesome/css/all.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="login/fon-awesome/css/all.css">
+    <link rel="stylesheet" href="login/style/style.css">
 
-    <title>Login</title>
+    <title>Forgot password</title>
 
 </head>
 <body>
@@ -50,16 +49,16 @@
 
     <div class="header_top2">
         <div class="logo_header">
-            <img src="image/logo.png" alt="">
+            <img src="login/image/logo.png" alt="">
         </div>
         <div class="navigation_menu">
             <div class="menu">
                 <ul class="ul">
-                    <li class="home"><a class="a" href="../index.jsp">TRANG CHỦ</a></li>
-                    <li class="shop"><a class="a" href="../shop-grid.jsp">CỦA HÀNG</a></li>
-                    
-                    <li class="blog"><a class="a" href="../blog.jsp">BLOG</a></li>
-                    <li class="contact"><a class="a" href="../contact.jsp">LIÊN HỆ</a></li>
+                    <li class="home"><a class="a" href="index.jsp">TRANG CHỦ</a></li>
+                    <li class="shop"><a class="a" href="shop-grid.jsp">CỦA HÀNG</a></li>
+
+                    <li class="blog"><a class="a" href="blog.jsp">BLOG</a></li>
+                    <li class="contact"><a class="a" href="contact.jsp">LIÊN HỆ</a></li>
 
                 </ul>
             </div>
@@ -88,20 +87,20 @@
 <img src="" alt="" class="wave">
 <div class="container">
     <div class="img">
-        <img src="image/undraw_personalization_triu.svg" alt="" >
+        <img src="login/image/undraw_personalization_triu.svg" alt="" >
 
     </div>
     <div class="login-container">
-        <form action="../index1.jsp">
-            <img class="avatar" src="image/undraw_profile_pic_ic5t.svg" alt="">
-            <h2>Đăng nhập</h2>
+        <form action="index.jsp">
+            <img class="avatar" src="login/image/undraw_profile_pic_ic5t.svg" alt="">
+            <h2>Quên mật khẩu</h2>
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div >
-                    <h5>Tên đăng nhập</h5>
-                    <input class="input" type="text"   aria-describedby="basic-addon1" aria-label="Username" required="Email">
+                    <h5>Email hoặc số điện thoại</h5>
+                    <input class="input" type="text"  aria-describedby="basic-addon1" aria-label="Username" required="">
 
 
                 </div>
@@ -111,27 +110,17 @@
                     <i class="fas fa-key"></i>
                 </div>
                 <div>
-                    <h5>Mật khẩu</h5>
-                    <input  class="input" type="password" id="password1" aria-describedby="basic-addon1" aria-label="Username" required="">
+                    <h5>Đặt lại mật khẩu</h5>
+                    <input class="input" type="password" id="password1"  aria-describedby="basic-addon1" aria-label="Username" required="">
 
-                    <div class="icon" ><i class="fas fa-eye icon1" id="icon7"  onclick="myFuction()"></i>
+                    <div style="transform: translate(430px,30px);" class="icon" ><i class="fas fa-eye icon1" id="icon7"  onclick="myFuction()"></i>
                         <i class="fas fa-eye-slash icon2" id="icon8"  onclick="myFuction()"></i>
                     </div>
 
                 </div>
             </div>
-            <a style="text-align: center;" href="forgotPassword.jsp" class="forgot-password"> Quên mật khẩu</a>
-
-            <input type="submit" class="btn" value="Đăng nhập">
-            <div class="text-login">
-                <a style="text-align: center;">Đăng nhập với</a>
-            </div>
-            <div class="login-with">
-                <a href="#"><i class="fab fa-facebook-f hover"></i></a>
-                <a href="#"><i class="fab fa-google hover"></i></a>
-
-            </div>
-            <h3>Bạn chưa có tài khoản? </h3> <br><a class="forgot-password" href="register.jsp" style="text-align: center;">Đăng ký ngay</a>
+            <p style="color: rgb(158, 155, 155);"><span>Lưu ý: email hoặc số điện thoại phải là email (số điện thoại) bạn đã đăng ký</span></p>
+            <input type="submit" class="btn" value="Xác nhận">
 
 
         </form>
@@ -144,7 +133,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="../index.jsp"><img src="image/logo.png" alt=""></a>
+                        <a href="index.jsp"><img src="login/image/logo.png" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: 113/1/8 Hoàng Diệu 2, phường Linh Trung, quận Thủ Đức</li>
@@ -158,17 +147,17 @@
                     <h6 class="helpful">Liên kết hữu ích</h6>
                     <div class="list-contact">
                         <ul class="list-contact_1">
-                            <li><a href="../gioithieuVYN.jsp">Giới thiệu VYNLaptop</a></li>
-                            <li><a href="../baohanh.jsp">Bảo hành</a></li>
-                            <li><a href="../baomatthongtin.jsp">Bảo mật thông tin</a></li>
-                            <li><a href="../phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
+                            <li><a href="gioithieuVYN.jsp">Giới thiệu VYNLaptop</a></li>
+                            <li><a href="baohanh.jsp">Bảo hành</a></li>
+                            <li><a href="baomatthongtin.jsp">Bảo mật thông tin</a></li>
+                            <li><a href="phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                         </ul>
                         <ul class="list-contact_2">
-                            <li><a href="./register.jsp">Đăng ký tài khoản</a></li>
-                            <li><a href="../shop-grid.jsp">Cửa hàng</a></li>
+                            <li><a href="register.jsp">Đăng ký tài khoản</a></li>
+                            <li><a href="shop-grid.jsp">Cửa hàng</a></li>
 
-                            <li><a href="../blog.jsp">Blog</a></li>
-                            <li><a href="../contact.jsp">Liên hệ</a></li>
+                            <li><a href="blog.jsp">Blog</a></li>
+                            <li><a href="contact.jsp">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -196,13 +185,12 @@
                     <div class="footer__copyright__text"><p class="design"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright All rights reserved | This template is made with  by Colorlib
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="image/payment-item.png" alt=""></div>
+                    <div class="footer__copyright__payment"><img src="login/image/payment-item.png" alt=""></div>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-
 <script>
     function myFuction(){
         var x = document.getElementById("password1");
@@ -224,7 +212,7 @@
     }
 
 </script>
-<script type="text/javascript" src="myjs/login.js"></script>
+<script type="text/javascript" src="login/myjs/login.js"></script>
 
 
 

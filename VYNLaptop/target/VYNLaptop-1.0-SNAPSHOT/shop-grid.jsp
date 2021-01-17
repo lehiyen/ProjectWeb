@@ -89,7 +89,7 @@
     <div class="humberger__menu__widget">
 
         <div class="header__top__right__auth">
-            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
                         </div>
                     </div>
                 </div>
@@ -186,6 +186,7 @@
 <section class="hero hero-normal">
     <div class="container">
         <div class="row">
+
             <div class="col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
@@ -193,20 +194,24 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="asus.jsp">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                        <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+<%--                        <li><a href="#">ACER</a></li>--%>
+<%--                        <li><a href="#">HP</a></li>--%>
+<%--                        <li><a href="#">DELL</a></li>--%>
+<%--                        <li><a href="#">MACBOOK</a></li>--%>
+<%--                        <li><a href="#">THINKPAD</a></li>--%>
+<%--                        <li><a href="#">VIVO</a></li>--%>
+<%--                        <li><a href="#">SAMSUNG</a></li>--%>
+<%--                        <li><a href="#">LENOVO</a></li>--%>
+<%--                        <li><a href="#">SONY</a></li>--%>
+<%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
+
+<%--            --%>
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
@@ -258,17 +263,18 @@
                     <div class="sidebar__item">
                         <h4>Thương hiệu</h4>
                         <ul>
-                            <li><a href="asus.jsp">ASUS</a></li>
-                            <li><a href="#">ACER</a></li>
-                            <li><a href="#">HP</a></li>
-                            <li><a href="#">DELL</a></li>
-                            <li><a href="#">MACBOOK</a></li>
-                            <li><a href="#">THINKPAD</a></li>
-                            <li><a href="#">VIVO</a></li>
-                            <li><a href="#">SAMSUNG</a></li>
-                            <li><a href="#">LENOVO</a></li>
-                            <li><a href="#">SONY</a></li>
-                            <li><a href="#">TOSHIBA</a></li>
+                            <c:forEach items="${category}" var="p">
+                                <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                                <%--                        <li><a href="#">HP</a></li>--%>
+                                <%--                        <li><a href="#">DELL</a></li>--%>
+                                <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                                <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                                <%--                        <li><a href="#">VIVO</a></li>--%>
+                                <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                                <%--                        <li><a href="#">LENOVO</a></li>--%>
+                                <%--                        <li><a href="#">SONY</a></li>--%>
+                                <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="sidebar__item">
@@ -417,6 +423,7 @@
                                     </a>
                                 </div>
                             </div>
+<%--                            END LASTEST PRODUCT--%>
                         </div>
                     </div>
                 </div>
@@ -440,12 +447,12 @@
                                         </ul>
                                     </div>
                                     <div class="product__discount__item__text">
-                                        <h5><a href="#">${p.tenSP} <br><br></a></h5> <br>
+                                        <h5><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP} <br><br></a></h5> <br>
                                         <div class="product__item__price">${p.gia} vnđ <span>${p.giasaugiam} vnđ</span></div>
                                         <div>
                                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
                                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_VivoBook_S14_S430UA-EB003T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
+                                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="/VYNLaptop/product?maSP=${p.maSP}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                                         </div>
                                     </div>
                                 </div>
@@ -493,12 +500,12 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="#">${p.tenSP}<br><br></a></h6>
+                                <h6><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP}<br><br></a></h6>
                                 <h5>${p.gia} vnđ</h5><br>
                                 <div>
                                     <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
                                     <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
-                                    <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="ASUS_15_X509JP-EJ013T.jsp"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
+                                    <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="product?pid=${p.id}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                                 </div>
                             </div>
                         </div>
@@ -545,8 +552,8 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="/VYNLaptop/register">Đăng ký tài khoản</a></li>
+                        <li><a href="./VYNLaptop/shop">Cửa hàng</a></li>
 
                         <li><a href="./blog.jsp">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>

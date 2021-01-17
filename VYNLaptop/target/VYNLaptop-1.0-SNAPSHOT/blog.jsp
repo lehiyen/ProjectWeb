@@ -89,7 +89,7 @@
     <div class="humberger__menu__widget">
 
         <div class="header__top__right__auth">
-            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="./login/login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
                         </div>
                     </div>
                 </div>

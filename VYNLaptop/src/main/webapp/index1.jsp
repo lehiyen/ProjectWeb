@@ -121,12 +121,12 @@
 
         <div class="header__top__right__auth">
             <ul>
-                <li class="image-avatar"><img style="width: 40px ; height: 40px; border: none ; border-radius: 50%;" src="img/product/acer/Acer_Aspire_5_A515-53G-71NN/acer1.png" alt="">
+                <li class="image-avatar"><img style="width: 40px ; height: 40px; border: none ; border-radius: 50%;" src="" alt="">
                     <ul class="list-selection">
                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                        <li><a href="login.jsp">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -136,15 +136,7 @@
         <ul>
             <li class="active"><a href="./index.jsp">Trang chủ</a></li>
             <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-            <!--<li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.jsp">Shop Details</a></li>
-                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                    <li><a href="./checkout.jsp">Check Out</a></li>
-                    <li><a href="./blog-details.jsp">Blog Details</a></li>
-                </ul>
-            </li>
-        -->
+
             <li><a href="./blog.jsp">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
@@ -196,7 +188,7 @@
                                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                                        <li><a href="login.jsp">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -221,14 +213,7 @@
                     <ul>
                         <li class="active"><a href="./index.jsp">Trang chủ</a></li>
                         <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-                        <!--<li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.jsp">Shop Details</a></li>
-                                <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                <li><a href="./checkout.jsp">Check Out</a></li>
-                                <li><a href="./blog-details.jsp">Blog Details</a></li>
-                            </ul>
-                        </li> -->
+
                         <li><a href="./blog.jsp">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>

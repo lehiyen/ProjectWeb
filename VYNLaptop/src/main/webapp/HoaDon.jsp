@@ -62,7 +62,7 @@
                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                        <li><a href="login.jsp">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -130,7 +130,7 @@
                                         <li><a href="User.jsp">Thông tin tài khoản</a></li>
                                         <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
                                         <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                                        <li><a href="login/login.jsp">Đăng xuất</a></li>
+                                        <li><a href="login.jsp">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </ul>

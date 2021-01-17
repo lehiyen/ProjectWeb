@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fon-awesome/css/all.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="login/fon-awesome/css/all.css">
+    <link rel="stylesheet" href="login/style/style.css">
     <title>Register</title>
 </head>
 <body>
@@ -48,16 +48,16 @@
 
     <div class="header_top2">
         <div class="logo_header">
-            <img src="image/logo.png" alt="">
+            <img src="login/image/logo.png" alt="">
         </div>
         <div class="navigation_menu">
             <div class="menu">
                 <ul class="ul">
-                    <li class="home"><a class="a" href="../index.jsp">TRANG CHỦ</a></li>
-                    <li class="shop"><a class="a" href="../shop-grid.jsp">CỬA HÀNG</a></li>
+                    <li class="home"><a class="a" href="/VYNLaptop/home">TRANG CHỦ</a></li>
+                    <li class="shop"><a class="a" href="/VYNLaptop/shop">CỬA HÀNG</a></li>
 
-                    <li class="blog"><a class="a" href="../blog.jsp">BLOG</a></li>
-                    <li class="contact"><a class="a" href="../contact.jsp">LIÊN HỆ</a></li>
+                    <li class="blog"><a class="a" href="/VYNLaptop/blog">BLOG</a></li>
+                    <li class="contact"><a class="a" href="contact.jsp">LIÊN HỆ</a></li>
 
                 </ul>
             </div>
@@ -86,20 +86,25 @@
 <img src="" alt="" class="wave">
 <div class="container Register-container">
     <div class="img">
-        <img src="image/undraw_personalization_triu.svg" alt="" >
+        <img src="login/image/undraw_personalization_triu.svg" alt="" >
 
     </div>
     <div class="login-container">
-        <form action="index.jsp">
-            <img class="avatar" src="image/undraw_profile_pic_ic5t.svg" alt="">
+        <form action="register" method="get">
+            <img class="avatar" src="login/image/undraw_profile_pic_ic5t.svg" alt="">
             <h2>Đăng ký tài khoản</h2>
+            <div>
+            <p style="color:#ff0000;"><%= request.getAttribute("err") == null?"":request.getAttribute("err")%></p>
+
+        </div>
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
+
                 <div >
                     <h5>Tên đăng nhập</h5>
-                    <input class="input" type="text" aria-describedby="basic-addon1" name="name">
+                    <input class="input" type="text" aria-describedby="basic-addon1" name="name" value="<%=request.getParameter("name")==null?"":request.getParameter("name")%>">
 
 
                 </div>
@@ -141,12 +146,13 @@
                     <i class="fas fa-envelope"></i>
                 </div>
                 <div >
-                    <h5>Email hoặc số điện thoại</h5>
-                    <input class="input" type="text" aria-describedby="basic-addon1" aria-label="Username" required="">
+                    <h5>Email</h5>
+                    <input class="input" type="text" aria-describedby="basic-addon1" name="email" value="<%=request.getParameter("email")==null?"":request.getParameter("email")%>">
 
 
                 </div>
             </div>
+
 
             <input type="submit" class="btn" value="Đăng ký">
 
@@ -160,7 +166,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.jsp"><img src="image/logo.png" alt=""></a>
+                        <a href="/VYNLaptop/home"><img src="login/image/logo.png" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: 113/1/8 Hoàng Diệu 2, phường Linh Trung, quận Thủ Đức</li>
@@ -174,17 +180,17 @@
                     <h6 class="helpful">Liên kết hữu ích</h6>
                     <div class="list-contact">
                         <ul class="list-contact_1">
-                            <li><a href="../gioithieuVYN.jsp">Giới thiệu VYNLaptop</a></li>
-                            <li><a href="../baohanh.jsp">Bảo hành</a></li>
-                            <li><a href="../baomatthongtin.jsp">Bảo mật thông tin</a></li>
-                            <li><a href="../phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
+                            <li><a href="gioithieuVYN.jsp">Giới thiệu VYNLaptop</a></li>
+                            <li><a href="baohanh.jsp">Bảo hành</a></li>
+                            <li><a href="baomatthongtin.jsp">Bảo mật thông tin</a></li>
+                            <li><a href="phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                         </ul>
                         <ul class="list-contact_2">
-                            <li><a href="./register.jsp">Đăng ký tài khoản</a></li>
-                            <li><a href="../shop-grid.jsp">Cửa hàng</a></li>
+                            <li><a href="register.jsp">Đăng ký tài khoản</a></li>
+                            <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
-                            <li><a href="../blog.jsp">Blog</a></li>
-                            <li><a href="../contact.jsp">Liên hệ</a></li>
+                            <li><a href="/VYNLaptop/blog">Blog</a></li>
+                            <li><a href="contact.jsp">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,7 +218,7 @@
                     <div class="footer__copyright__text"><p class="design"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright All rights reserved | This template is made with  by Colorlib
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="image/payment-item.png" alt=""></div>
+                    <div class="footer__copyright__payment"><img src="login/image/payment-item.png" alt=""></div>
                 </div>
             </div>
         </div>
@@ -261,7 +267,7 @@
     }
 
 </script>
-<script type="text/javascript" src="myjs/login.js"></script>
+<script type="text/javascript" src="login/myjs/login.js"></script>
 
 
 
