@@ -150,9 +150,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -237,15 +237,15 @@
 <div class="user">
     <div class="user-container">
         <form action="user" method="get">
-            <div style="padding-top: 20px ;" class="user-div">
-                <h3  class="user-avatar">Avatar</h3>
-                <div class="avatar">
-                    <label class="label-avatar" for="avatar" id="btn-avatar"><img id="img" style="width: 150px;" src="" alt=""></label>
+<%--            <div style="padding-top: 20px ;" class="user-div">--%>
+<%--                <h3  class="user-avatar">Avatar</h3>--%>
+<%--                <div class="avatar">--%>
+<%--                    <label class="label-avatar" for="avatar" id="btn-avatar"><img id="img" style="width: 150px;" src="" alt=""></label>--%>
 
-                    <input type="file" id="avatar" class="change-avatar">
+<%--                    <input type="file" id="avatar" class="change-avatar">--%>
 
-                </div>
-            </div>
+<%--                </div>--%>
+<%--            </div>--%>
             <div>
                 <h3 class="user-h3">Tài khoản</h3>
                 <section>
@@ -274,14 +274,15 @@
                     </div>
                 </section>
 
-            </div>
+            </div><div class="line"></div>
+
+    <div class="div-btn"> <button type="submit" class="save-info">Lưu</button></div>
         </form>
 
 
 
     </div>
-    <div class="line"></div>
-    <div class="div-btn"> <button type="submit" class="save-info">Lưu</button></div>
+
 
 </div>
 <!--  End container -->

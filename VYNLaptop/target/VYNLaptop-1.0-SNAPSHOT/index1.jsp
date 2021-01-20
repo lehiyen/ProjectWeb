@@ -803,8 +803,8 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="register.jsp">Đăng ký tài khoản</a></li>
+                        <li><a href="shop">Cửa hàng</a></li>
 
                         <li><a href="./blog.jsp">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>

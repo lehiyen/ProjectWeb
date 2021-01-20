@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login/fon-awesome/css/all.css">
     <link rel="stylesheet" href="login/style/style.css">
-
+<%--    <link rel="stylesheet" href="css/style.css">--%>
     <title>Forgot password</title>
 
 </head>
@@ -66,13 +66,14 @@
         </div>
         <div class="icon-like">
             <div class="icon-container">
+
                 <ul class="heart-shopping">
                     <li class="heart"><a href=""><i class="fas fa-heart"></i> <span>0</span></a></li>
-                    <li class="shopping-bag"><a href=""><i class="fas fa-shopping-bag"></i> <span>0</span></a></li>
+                    <li class="shopping-bag"><a href="pageCart"><i class="fas fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                 </ul>
                 <div class="price">
                     Mục chọn:
-                    <span>0 vnđ</span>
+                    <span id="span-money">0 vnđ</span>
                 </div>
             </div>
 
@@ -91,7 +92,7 @@
 
     </div>
     <div class="login-container">
-        <form action="index.jsp">
+        <form action="performChangePass" method="post" onsubmit="return checkInput()">
             <img class="avatar" src="login/image/undraw_profile_pic_ic5t.svg" alt="">
             <h2>Quên mật khẩu</h2>
             <div class="input-div one">
@@ -99,8 +100,8 @@
                     <i class="fas fa-user"></i>
                 </div>
                 <div >
-                    <h5>Email hoặc số điện thoại</h5>
-                    <input class="input" type="text"  aria-describedby="basic-addon1" aria-label="Username" required="">
+                    <h5>Email</h5>
+                    <input class="input" type="text" name="mail"  aria-describedby="basic-addon1" aria-label="Username" required="" value="<%=request.getParameter("mail")==null?"":request.getParameter("mail")%>">
 
 
                 </div>
@@ -111,7 +112,7 @@
                 </div>
                 <div>
                     <h5>Đặt lại mật khẩu</h5>
-                    <input class="input" type="password" id="password1"  aria-describedby="basic-addon1" aria-label="Username" required="">
+                    <input class="input" type="password" id="password1" name="passNew"  aria-describedby="basic-addon1" aria-label="Username" required="">
 
                     <div style="transform: translate(430px,30px);" class="icon" ><i class="fas fa-eye icon1" id="icon7"  onclick="myFuction()"></i>
                         <i class="fas fa-eye-slash icon2" id="icon8"  onclick="myFuction()"></i>
@@ -119,7 +120,19 @@
 
                 </div>
             </div>
-            <p style="color: rgb(158, 155, 155);"><span>Lưu ý: email hoặc số điện thoại phải là email (số điện thoại) bạn đã đăng ký</span></p>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div >
+                    <h5>Nhập lại mật khẩu</h5>
+                    <input class="input" type="password" id="repeatPass"  aria-describedby="basic-addon1" aria-label="Username" required="">
+
+
+                </div>
+            </div>
+        <p id="displayNotify" style="color: red ; width: 100% ;  text-align: center ; margin-bottom: 10px "> <%=request.getAttribute("notify")==null?"":request.getAttribute("notify")%></p>
+            <p style="color: rgb(158, 155, 155);"><span>Lưu ý: email  phải là email bạn đã đăng ký</span></p>
             <input type="submit" class="btn" value="Xác nhận">
 
 
@@ -153,7 +166,7 @@
                             <li><a href="phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                         </ul>
                         <ul class="list-contact_2">
-                            <li><a href="register.jsp">Đăng ký tài khoản</a></li>
+                            <li><a href="login/register.jsp">Đăng ký tài khoản</a></li>
                             <li><a href="shop-grid.jsp">Cửa hàng</a></li>
 
                             <li><a href="blog.jsp">Blog</a></li>
@@ -210,6 +223,15 @@
         }
 
     }
+    function  checkInput(){
+        var  pass1 = document.getElementById("password1").value
+        var pass2 = document.getElementById("repeatPass").value
+        if(pass1==pass2) return  true ;
+        else {
+            document.getElementById("displayNotify").innerText = "Mật khẩu không trùng  nhau"
+            return false;
+        }
+    }
 
 </script>
 <script type="text/javascript" src="login/myjs/login.js"></script>
@@ -217,4 +239,4 @@
 
 
 </body>
-</html> 
+</html>

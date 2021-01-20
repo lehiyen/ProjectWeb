@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login/fon-awesome/css/all.css">
     <link rel="stylesheet" href="login/style/style.css">
+<%--    <link rel="stylesheet" href="css/style.css">--%>
     <title>Register</title>
 </head>
 <body>
@@ -34,7 +35,22 @@
 
 
                         <div class="right_3">
-                            <a href="login.jsp"> <i class="fas fa-user"></i>Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
 
                         </div>
 
@@ -66,12 +82,13 @@
         <div class="icon-like">
             <div class="icon-container">
                 <ul class="heart-shopping">
-                    <li class="heart"><a href=""><i class="fas fa-heart"></i> <span>0</span></a></li>
-                    <li class="shopping-bag"><a href=""><i class="fas fa-shopping-bag"></i> <span>0</span></a></li>
-                </ul>
+                <li class="heart"><a href=""><i class="fas fa-heart"></i> <span>0</span></a></li>
+                <li class="shopping-bag"><a href="pageCart"><i class="fas fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
+            </ul>
                 <div class="price">
                     Mục chọn:
-                    <span>0 vnđ</span>
+                    <span id="span-money">0 vnđ</span>
+                </div>
                 </div>
             </div>
 

@@ -138,7 +138,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -174,9 +189,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>

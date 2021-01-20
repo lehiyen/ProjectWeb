@@ -94,8 +94,8 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+            <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+            <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
             <!--<li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
                     <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -105,7 +105,7 @@
                 </ul>
             </li>
         -->
-            <li><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/blog">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -165,8 +165,8 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li ><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="home">Trang chủ</a></li>
+                        <li ><a href="shop">Cửa hàng</a></li>
                         <!--<li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -175,7 +175,7 @@
                                 <li><a href="./blog-details.jsp">Blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -184,9 +184,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -208,17 +208,19 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="asus.jsp">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                            <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                            <%--                        <li><a href="#">ACER</a></li>--%>
+                            <%--                        <li><a href="#">HP</a></li>--%>
+                            <%--                        <li><a href="#">DELL</a></li>--%>
+                            <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                            <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                            <%--                        <li><a href="#">VIVO</a></li>--%>
+                            <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                            <%--                        <li><a href="#">LENOVO</a></li>--%>
+                            <%--                        <li><a href="#">SONY</a></li>--%>
+                            <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -254,7 +256,7 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
+                        <a href="home">Trang chủ</a>
                         <span>Giỏ hàng</span>
                     </div>
                 </div>
@@ -281,72 +283,31 @@
                         </tr>
                         </thead>
                         <tbody class="add-products">
-                        <tr>
-                            <td class="shoping__cart__item">
-                                <img style="width: 100px; height: 100px;" src="img/product/acer/Acer_Aspire_5_A515-53G-71NN/acer1.png" alt="">
-                                <h5>Acer Aspire 5 A515-53G-71NN</h5>
-                            </td>
-                            <td class="shoping__cart__price">
-                                16.990.000 vnđ
-                            </td>
-                            <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+                        <c:forEach items="${listItem}" var="p">
+                            <tr id="${p.id}">
+                                <td class="shoping__cart__item">
+                                    <img style="width: 100px; height: 100px;" src=${p.hinhanh} alt="">
+                                    <h5>${p.tenSP}</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                        ${p.giasaugiam} vnd
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value=${p.soluong}>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="shoping__cart__total">
-                                16.990.000 vnđ
-                            </td>
-                            <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="shoping__cart__item">
-                                <img style="width: 100px; height: 100px;" src="img/product/asus/ASUS_ZenBook_UX430UA-GV334T/as1.png" alt="">
-                                <h5>ASUS ZenBook UX430UA-GV334T</h5>
-                            </td>
-                            <td class="shoping__cart__price">
-                                19.999.000 vnđ
-                            </td>
-                            <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="shoping__cart__total">
-                                19.999.000 vnđ
-                            </td>
-                            <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="shoping__cart__item">
-                                <img style="width: 100px; height: 100px;" src="img/product/hp/LaptopHP_OMEN_15-dh0172tx/hp1.png" alt="">
-                                <h5>HP OMEN 15-dh0172tx</h5>
-                            </td>
-                            <td class="shoping__cart__price">
-                                22.190.000 vnđ
-                            </td>
-                            <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="shoping__cart__total">
-                                22.190.000 vnđ
-                            </td>
-                            <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="shoping__cart__total">
+                                  ${p.tongTien} vnd
+
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <span class="icon_close"id="${p.id}"></span>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -356,8 +317,8 @@
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
                     <a href="#" class="primary-btn cart-btn">Tiếp tục mua sắm</a>
-                    <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        Cập nhật giỏ hàng</a>
+<%--                    <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>--%>
+<%--                        Cập nhật giỏ hàng</a>--%>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -375,8 +336,7 @@
                 <div class="shoping__checkout">
                     <h5>Tổng giỏ hàng</h5>
                     <ul>
-                        <li>Tổng phụ <span>59.179.000 vnđ</span></li>
-                        <li>Toàn bộ <span>59.179.000 vnđ</span></li>
+                        <li>Tổng phụ <span class="total-Money"><%= request.getAttribute("money")==null?0:request.getAttribute("money")  %> vnd</span></li>
                     </ul>
                     <a href="checkout.jsp" class="primary-btn">Tiến hành thanh toán</a>
                 </div>
@@ -463,6 +423,7 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
 <script src="login/myjs/shopping.js"></script>
+<script src="js/ShoppingCart.js" ></script>
 
 
 </body>

@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private int sanphambanchay;
     private long giasaugiam;
     private String motaSP;
+   private  long tongTien ;
 
     public Product(){};
     public Product(String id, String maSP, String thuonghieu, String tenSP, int soluong,
@@ -101,7 +102,7 @@ public class Product implements Serializable {
     }
 
     public int getSoluong() {
-        return soluong;
+        return this.soluong;
     }
 
     public int getYeuthich() {
@@ -132,7 +133,7 @@ public class Product implements Serializable {
         return trangthai;
     }
     public long getGiasaugiam(){
-        return this. giasaugiam ;
+        return getGia() - getGia()*(getGiamgia()/100);
     }
 
     public void setId(String id) {
@@ -167,8 +168,8 @@ public class Product implements Serializable {
         this.giamgia = giamgia;
     }
 
-    public void setGia(long gia) {
-        this.gia = gia;
+    public void setGia() {
+        this.gia = getSoluong()*getGia();
     }
 
     public void setHinhanh(String hinhanh) {
@@ -199,6 +200,10 @@ public class Product implements Serializable {
         this.motaSP = motaSP;
     }
 
+    public long getTongTien() {
+        return tongTien = getSoluong()*getGiasaugiam() ;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -219,4 +224,6 @@ public class Product implements Serializable {
                 ", motaSP='" + motaSP + '\'' +
                 '}';
     }
+
+
 }

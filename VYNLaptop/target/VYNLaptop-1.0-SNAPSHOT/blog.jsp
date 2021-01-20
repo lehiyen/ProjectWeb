@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
@@ -73,6 +74,7 @@
     <div class="loader"></div>
 </div>
 
+
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
@@ -94,18 +96,10 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-            <!--<li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.jsp">Shop Details</a></li>
-                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                    <li><a href="./checkout.jsp">Check Out</a></li>
-                    <li><a href="./blog-details.jsp">Blog Details</a></li>
-                </ul>
-            </li>
-        -->
-            <li  class="active"><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+            <li class="active"><a href="/VYNLaptop/shop">Cửa hàng</a></li>
+
+            <li><a href="/VYNLaptop/blog">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -159,23 +153,16 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-                        <!--<li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.jsp">Shop Details</a></li>
-                                <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                <li><a href="./checkout.jsp">Check Out</a></li>
-                                <li><a href="./blog-details.jsp">Blog Details</a></li>
-                            </ul>
-                        </li> -->
-                        <li  class="active"><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+                        <li ><a href="/VYNLaptop/shop">Cửa hàng</a></li>
+
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -184,9 +171,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -201,6 +188,7 @@
 <section class="hero hero-normal">
     <div class="container">
         <div class="row">
+
             <div class="col-lg-3">
                 <div class="hero__categories">
                     <div class="hero__categories__all">
@@ -208,25 +196,29 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="asus.jsp">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                            <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                            <%--                        <li><a href="#">ACER</a></li>--%>
+                            <%--                        <li><a href="#">HP</a></li>--%>
+                            <%--                        <li><a href="#">DELL</a></li>--%>
+                            <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                            <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                            <%--                        <li><a href="#">VIVO</a></li>--%>
+                            <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                            <%--                        <li><a href="#">LENOVO</a></li>--%>
+                            <%--                        <li><a href="#">SONY</a></li>--%>
+                            <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
+
+            <%--            --%>
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Bạn muốn tìm gì?">
+                        <form action="search" method="get">
+                            <input name="keyword" type="text" placeholder="Bạn muốn tìm gì?">
                             <button type="submit" style="border-radius: 5px; background-color: #38d39f;color: white; border: none;" ><b>Tìm kiếm</b></button>
                         </form>
                     </div>
@@ -246,6 +238,7 @@
 </section>
 <!-- Hero Section End -->
 
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
     <div class="container">
@@ -254,7 +247,7 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
+                        <a href="/VYNLaptop/home">Trang chủ</a>
                         <span>Blog</span>
                     </div>
                 </div>
@@ -271,29 +264,27 @@
             <div class="col-lg-4 col-md-5">
                 <div class="blog__sidebar">
                     <div class="blog__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Tìm kiếm...">
+                        <form action="searchBlog" method="get">
+                            <input name="key" type="text" placeholder="Tìm kiếm...">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>
                     <div class="blog__sidebar__item">
                         <h4>Thể loại</h4>
                         <ul>
-                            <li><a href="#">Tất cả</a></li>
-                            <li><a href="#">Máy tính</a></li>
-                            <li><a href="#">Thực phẩm</a></li>
-                            <li><a href="#">Sức khỏe</a></li>
-                            <li><a href="#">Du lịch</a></li>
+                            <c:forEach items="${categoryBlog}" var="p">
+
+                                <li><a href="categoryBlog?cbid=${p.id}">${p.chude}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
 
                     <div class="blog__sidebar__item">
                         <h4>Tìm kiếm bởi</h4>
                         <div class="blog__sidebar__item__tags">
-                            <a href="#">Máy tính</a>
-                            <a href="#">Thực phẩm</a>
-                            <a href="#">Sức khỏe</a>
-                            <a href="#">Du lịch</a>
+                            <c:forEach items="${categoryBlog}" var="p">
+                                <a href="categoryBlog?cbid=${p.id}">${p.chude}</a>
+                            </c:forEach>
 
                         </div>
                     </div>
@@ -301,79 +292,30 @@
             </div>
             <div class="col-lg-8 col-md-7">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <a href="10biquyetsudungmaytinhbenlau.jsp"><img src="img/tips/MáyTinh/tip2.jpg" alt=""></a>
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 21/2/2020</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="10biquyetsudungmaytinhbenlau.jsp">10 bí quyết sử dụng máy tính bền lâu <br><br></a></h5>
+                    <c:forEach items="${allBlog}" var="p">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="blog__item">
+                                <div class="blog__item__pic">
+                                    <a href="#"><img src="${p.hinhanh}" alt=""></a>
+                                </div>
+                                <div class="blog__item__text">
+                                    <ul>
+                                        <li><i class="fa fa-calendar-o"></i> ${p.ngaydang}</li>
+                                    </ul>
+                                    <h5><a href="#">${p.tenblog} <br><br></a></h5>
 
-                                <a href="10biquyetsudungmaytinhbenlau.jsp" class="blog__btn">Đọc thêm<span class="arrow_right"></span></a>
+                                    <a href="#" class="blog__btn">Đọc thêm<span class="arrow_right"></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="img/tips/SucKhoe/tip1.jpg" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 11/7/2020</li>
-                                    <li><i class="fa fa-comment-o"></i> 10</li>
-                                </ul>
-                                <h5><a href="#">10 cách đơn giản để duy trì một sức khỏe tốt</a></h5>
-
-                                <a href="#" class="blog__btn">Đọc thêm <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="img/tips/DuLich/tip1.jpg" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 20/10/2020</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="#">10 vật dụng cần mang theo khi đi du lịch</a></h5>
-
-                                <a href="#" class="blog__btn">Đọc thêm <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="img/tips/ThucPham/tip1.jpg" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 20/11/2020</li>
-                                    <li><i class="fa fa-comment-o"></i> 15</li>
-                                </ul>
-                                <h5><a href="#">Cách nhận biết thực phẩm sạch <br><br></a></h5>
-
-                                <a href="#" class="blog__btn">Đọc thêm <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                    </c:forEach>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Blog Section End -->
+
 
 <!-- Footer Section Begin -->
 <footer class="footer spad">
@@ -401,8 +343,8 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="./register.jsp">Đăng ký tài khoản</a></li>
+                        <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
                         <li><a href="./blog.jsp">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>

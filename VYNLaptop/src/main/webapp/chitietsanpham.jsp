@@ -151,7 +151,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="/VYNLaptop/Login"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -187,9 +202,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -304,15 +319,20 @@
                     </div>
                     <div class="product__details__price">${info.gia}đ</div>
                     <p>${info.motaSP}</p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
+                    <form action="shopCart">
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" name="quantity" value="1">
+                                    <input name="action" value="add" type="hidden">
+                                    <input name="id" value="${info.id}" type="hidden">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a href="shoping-cart.jsp" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
-                    <a href="#" class="heart-icon" title="Thêm vào trang yêu thích"><span class="icon_heart_alt"></span></a>
+                        <input type="submit" value="Thêm Vào Giỏ Hàng" style="color: white ; outline: none ; border: none ; border-radius: 5px ; background: #38d39f ; padding: 5px">
+                        <a href="#" class="heart-icon" title="Thêm vào trang yêu thích"><span class="icon_heart_alt"></span></a>
+
+                    </form>
                     <ul>
                         <br> <br>
                         <li><b>Trạng thái</b> <span>${info.trangthai}</span></li>

@@ -13,13 +13,14 @@ public class ProductEntity {
         PreparedStatement s = null;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh from sanpham where sanphamtieubieu = ?";
+            String sql="select * from sanpham where sanphamtieubieu = ?";
             s = con.prepareStatement(sql);
             s.setString(1, String.valueOf(1));
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
             rs.close();
@@ -34,13 +35,14 @@ public class ProductEntity {
         PreparedStatement s = null;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh from sanpham where ngaynhap >= ?";
+            String sql="select * from sanpham where ngaynhap >= ?";
             s = con.prepareStatement(sql);
             s.setString(1, "2020-01-20");
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
             rs.close();
@@ -56,15 +58,21 @@ public class ProductEntity {
         try {
             Product p =new Product();
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh, giamgia from sanpham where giamgia > ?";
+            String sql="select * from sanpham where giamgia > ?";
             s = con.prepareStatement(sql);
-            s.setString(1, String.valueOf(0));
+            s.setInt(1, 0);
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
                 try {
-                    long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
-                    re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, null
+                    long priceSale = rs.getLong("gia") -
+                            rs.getLong("gia")*(rs.getInt("giamgia")/100);
+
+                    re.add(new Product(rs.getString("id"),rs.getString("maSP"),
+                            null, rs.getString("tenSP"),0, null,
+                            null, rs.getInt("giamgia"), rs.getLong("gia"),
+                            0, rs.getString("hinhanh"), 0, 0,
+                            priceSale, rs.getString("motaSP")
                     ));
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
@@ -82,13 +90,14 @@ public class ProductEntity {
         PreparedStatement s = null;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh from sanpham where sanphambanchay = ?";
+            String sql="select * from sanpham where sanphambanchay = ?";
             s = con.prepareStatement(sql);
             s.setString(1, String.valueOf(1));
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
             rs.close();
@@ -99,16 +108,20 @@ public class ProductEntity {
             return new LinkedList<>();
         }
     }
-    public static List<Product> getAllProduct(){
+    public static List<Product> getAllProduct(String id , int numberPagesize){
+        int  numPage = Integer.parseInt(id) ;
         PreparedStatement s = null;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh from sanpham";
+            String sql="select * from sanpham limit ?,?";
             s = con.prepareStatement(sql);
+            s.setInt(1 ,numberPagesize*(numPage-1));
+            s.setInt(2,numberPagesize);
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
             rs.close();
@@ -226,13 +239,14 @@ public class ProductEntity {
         PreparedStatement s= null;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, thuonghieu,  tenSP, trangthai, gia, hinhanh, motaSP from sanpham\n" +
+            String sql="select * from sanpham\n" +
                     "where maSP =?";
             s = con.prepareStatement(sql);
             s.setString(1,maSP);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                return new Product(null,rs.getString("maSP"), rs.getString("thuonghieu"), rs.getString("tenSP"),0, null, rs.getString("trangthai"), 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                return new Product(rs.getString("id"),rs.getString("maSP"), rs.getString("thuonghieu"), rs.getString("tenSP"),0, null, rs.getString("trangthai"), rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 );
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -240,18 +254,22 @@ public class ProductEntity {
         }
         return null;
     }
-    public static List<Product> getProductByCategory(String nameCategory){
+    public static List<Product> getProductByCategory(String nameCategory, String id , int numberPagesize){
         PreparedStatement s = null;
+        int  numPage = Integer.parseInt(id) ;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select maSP, tenSP, gia, hinhanh from sanpham\n"
-                    +"where thuonghieu =?";
+            String sql="select * from sanpham\n"
+                    +"where thuonghieu =?\n" +"limit ?,?";
             s = con.prepareStatement(sql);
             s.setString(1,nameCategory);
+            s.setInt(2 ,numberPagesize*(numPage-1));
+            s.setInt(3, numberPagesize);
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
             rs.close();
@@ -274,7 +292,8 @@ public List<Product> getSimilarProduct(String thuonghieu){
         ResultSet rs = s.executeQuery();
         List<Product> re = new LinkedList<>();
         while(rs.next()){
-            re.add(new Product(null,rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, 0, rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+            long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+            re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
             ));
         }
         rs.close();
@@ -305,18 +324,88 @@ public List<Product> getSimilarProduct(String thuonghieu){
             e.printStackTrace();
         }
     }
+    //phuong thuc tim kiem
+    public static List<Product> search(String keyword, String id , int numberPagesize){
+        PreparedStatement s = null;
+        int  numPage = Integer.parseInt(id) ;
+        try {
+            Connection con = ConnectionDB.connect();
+            String sql="select * from sanpham where tenSP like ? limit ?,?";
+            s = con.prepareStatement(sql);
+            s.setString(1, "%"+keyword+"%");
+            s.setInt(2 ,numberPagesize*(numPage-1));
+            s.setInt(3,numberPagesize);
+            ResultSet rs = s.executeQuery();
+            List<Product> re = new LinkedList<>();
+            while(rs.next()){
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
+                ));
+            }
+            rs.close();
+            s.close();
+            return re;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            return new LinkedList<>();
+        }
+    }
 
 
 
     public static void main(String[] args) {
         ProductEntity pe = new ProductEntity();
 //        pe.updateInfoKhachHang("yen", "Yen", "Le", 980938786, "Binh Dinh");
-
+//List<Product> re = pe.getDiscountProducts();
 
 
 
 
 
     }
+    public  static Product getByID(String id) throws SQLException, ClassNotFoundException {
+        String sql = "select * from sanpham where id =?" ;
+        PreparedStatement ps = ConnectionDB.connect().prepareStatement(sql) ;
+        ps.setString(1 , id);
+        ResultSet rs = ps.executeQuery() ;
+        Product p = null;
+        while(rs.next()){
+            long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+            p = new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, 0, null
+            );
+
+
+        }
+
+
+        return p ;
+
+    }
+//    public static  ArrayList<Product> getLimtProduct(String id , int numberPagesize) throws SQLException, ClassNotFoundException {
+//
+//
+//
+//
+//        int  numPage = Integer.parseInt(id) ;
+//        System.out.println(numPage);
+//        String sql = "select * from sanpham  limit ?,?" ;
+//        PreparedStatement ps = ConnectionDataBase.connect().prepareStatement(sql) ;
+//
+//        ps.setInt(1 ,numberPagesize*(numPage-1));
+//        ps.setInt(2,numberPagesize);
+//        ResultSet rs =  ps.executeQuery() ;
+//        ArrayList<Product> list = new ArrayList<>() ;
+//
+//        while(rs.next()){
+//            Product  p = new Product() ;
+//            p.setId(rs.getString("id"));
+//            p.setImg(rs.getString("hinhanh"));
+//            p.setName(rs.getString("tenSP"));
+//            p.setPrice(rs.getInt("gia"));
+//            System.out.println(rs.getString("id"));
+//            list.add(p) ;
+//        }
+//        return list ;
+//    }
 
 }

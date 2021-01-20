@@ -46,6 +46,36 @@
     .myBtn:hover {
         background-color: #555;
     }
+    .image-avatar{
+        position: relative;
+    }
+    .list-selection li a {
+        color:white;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+
+    .list-selection{
+        position: absolute;
+        z-index: 10;
+        visibility: hidden;
+        background:#38d39f;
+        width: 150px;
+        opacity: 0;
+        transition: .3s;
+        top: 80px;
+    }
+    .image-avatar:hover .list-selection{
+        top: 20px;
+        opacity: 1;
+        visibility: visible;
+    }
+    .image-avatar:hover .list-selection li a:hover{
+        border: 1px solid #38d39f;
+        background: white;
+        color: #38d39f;
+    }
 </style>
 
 <body>
@@ -140,7 +170,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                   <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -169,9 +214,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -602,10 +647,10 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="register.jsp">Đăng ký tài khoản</a></li>
+                        <li><a href="shop">Cửa hàng</a></li>
 
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </div>
@@ -652,7 +697,7 @@
 <script src="js/mixitup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
-
+<script src="js/ShoppingCart.js"></script>
 
 </body>
 

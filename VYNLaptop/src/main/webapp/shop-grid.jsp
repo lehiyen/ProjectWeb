@@ -82,7 +82,7 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="/VYNLaptop/pageCart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
         <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
     </div>
@@ -95,9 +95,9 @@
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li><a href="/VYNLaptop/home">Trang chủ</a></li>
-            <li class="active"><a href="./shop-grid.jsp">Cửa hàng</a></li>
+            <li class="active"><a href="/VYNLaptop/shop">Cửa hàng</a></li>
             
-            <li><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/blog">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -140,7 +140,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -151,16 +166,16 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
                         <li><a href="/VYNLaptop/home">Trang chủ</a></li>
-                        <li class="active"><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li class="active"><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -169,9 +184,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -215,8 +230,8 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <input type="text" placeholder="Bạn muốn tìm gì?">
+                        <form action="search" method="get">
+                            <input name="keyword" type="text" placeholder="Bạn muốn tìm gì?">
                             <button type="submit" style="border-radius: 5px; background-color: #38d39f;color: white; border: none;" ><b>Tìm kiếm</b></button>
                         </form>
                     </div>
@@ -244,7 +259,7 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
+                        <a href="home">Trang chủ</a>
                         <span>Cửa hàng</span>
                     </div>
                 </div>
@@ -448,9 +463,11 @@
                                     </div>
                                     <div class="product__discount__item__text">
                                         <h5><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP} <br><br></a></h5> <br>
-                                        <div class="product__item__price">${p.gia} vnđ <span>${p.giasaugiam} vnđ</span></div>
+                                        <div class="product__item__price">${p.giasaugiam} vnđ <span>${p.gia} vnđ</span></div>
                                         <div>
-                                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
+                                            <c:if test="${user!=null}"> <button id="${p.id}" style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-item"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
+
+                                            <c:if test="${user==null}"> <button  style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-login"> <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
                                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
                                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="/VYNLaptop/product?maSP=${p.maSP}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                                         </div>
@@ -463,36 +480,36 @@
                     </div>
                 </div>
                 <div class="filter__item">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-5">
-                            <div class="filter__sort">
-                                <span>Sắp xếp</span>
-                                <select>
-                                    <option value="0">Mặc định</option>
-                                    <option value="0">A-Z</option>
-                                    <option value="0">Z-A</option>
-                                    <option value="0">Giá tăng dần</option>
-                                    <option value="0">Giá giảm dần</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <div class="filter__found">
-                                <h6><span>16</span> Products found</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-3">
-                            <div class="filter__option">
-                                <span class="icon_grid-2x2"></span>
-                                <span class="icon_ul"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                    <div class="row">--%>
+<%--                        <div class="col-lg-4 col-md-5">--%>
+<%--                            <div class="filter__sort">--%>
+<%--                                <span>Sắp xếp</span>--%>
+<%--                                <select>--%>
+<%--                                    <option value="0">Mặc định</option>--%>
+<%--                                    <option value="0">A-Z</option>--%>
+<%--                                    <option value="0">Z-A</option>--%>
+<%--                                    <option value="0">Giá tăng dần</option>--%>
+<%--                                    <option value="0">Giá giảm dần</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="col-lg-4 col-md-4">--%>
+<%--                            <div class="filter__found">--%>
+<%--                                <h6><span>16</span> Products found</h6>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="col-lg-4 col-md-3">--%>
+<%--                            <div class="filter__option">--%>
+<%--                                <span class="icon_grid-2x2"></span>--%>
+<%--                                <span class="icon_ul"></span>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <div class="row">
                     <c:forEach items="${list5_2}" var="p">
                     <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
+                        <div class="product__item" id ="${p.id}">
                             <div class="product__item__pic set-bg" data-setbg="${p.hinhanh}">
                                 <ul class="product__item__pic__hover">
                                     <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
@@ -503,7 +520,9 @@
                                 <h6><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP}<br><br></a></h6>
                                 <h5>${p.gia} vnđ</h5><br>
                                 <div>
-                                    <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
+                                    <c:if test="${user!=null}"> <button id="${p.id}" style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-item"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
+
+                                    <c:if test="${user==null}"> <button  style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-login"> <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
                                     <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
                                     <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="product?pid=${p.id}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                                 </div>
@@ -514,11 +533,17 @@
 
                 </div>
                 <div class="product__pagination">
-                    <a href="#"><i class="fa fa-long-arrow-left"></i></a>
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <c:if test="${pageCurrent !=1}">
+                        <a href="/VYNLaptop/shop?id=${pageCurrent-1}"><i class="fa fa-long-arrow-left"></i></a>
+                    </c:if>
+                    <c:forEach var="i" begin="${pageStart}" end = "${pageEnd}">
+
+                        <a  href="/VYNLaptop/shop?id=${i}" class="paginationActive" id="${i}" >${i}</a>
+                    </c:forEach>
+                    <c:if test="${pageCurrent!=totalPage}">
+                        <a href="/VYNLaptop/shop?id=${pageCurrent+1}"><i class="fa fa-long-arrow-right"></i></a>
+                    </c:if>
+
                 </div>
             </div>
         </div>
@@ -533,7 +558,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                        <a href="home"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
                         <li>Địa chỉ: 113/1/8 Hoàng Diệu 2, phường Linh Trung, quận Thủ Đức</li>
@@ -553,7 +578,7 @@
                     </ul>
                     <ul>
                         <li><a href="/VYNLaptop/register">Đăng ký tài khoản</a></li>
-                        <li><a href="./VYNLaptop/shop">Cửa hàng</a></li>
+                        <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
                         <li><a href="./blog.jsp">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
@@ -604,7 +629,46 @@
 <script src="js/main.js"></script>
 <script src="login/myjs/shopping.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/ShoppingCart.js"></script>
+<script>
 
+
+
+    var listAdd = document.querySelectorAll(".button-cart-item")
+    listAdd.forEach(add =>{
+
+        add.addEventListener("click" ,() =>{
+
+
+
+
+                swal({
+                    text: "Đã hêm vào giỏ hàng !",
+                    icon: "success",
+                    timer: 2000,
+                    button: false,
+                });
+
+        })
+
+
+    })
+    var listlogin = document.querySelectorAll(".button-cart-login") ;
+    listlogin.forEach(login =>{
+        login.addEventListener("click" , () =>{
+            swal({
+                title : "Đăng nhập",
+                text: "Vui lòng đăng nhập !",
+                icon: "warning",
+
+                button: true,
+            });
+        })
+    })
+
+
+</script>
 
 </body>
 

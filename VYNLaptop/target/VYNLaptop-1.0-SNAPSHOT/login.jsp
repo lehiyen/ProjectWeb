@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login/fon-awesome/css/all.css">
     <link rel="stylesheet" href="login/style/style.css">
-
+<%--    <link rel="stylesheet" href="css/style.css">--%>
     <title>Login</title>
 
 </head>
@@ -55,10 +55,10 @@
         <div class="navigation_menu">
             <div class="menu">
                 <ul class="ul">
-                    <li class="home"><a class="a" href="index.jsp">TRANG CHỦ</a></li>
-                    <li class="shop"><a class="a" href="shop-grid.jsp">CỦA HÀNG</a></li>
-                    
-                    <li class="blog"><a class="a" href="blog.jsp">BLOG</a></li>
+                    <li class="home"><a class="a" href="home">TRANG CHỦ</a></li>
+                    <li class="shop"><a class="a" href="shop">CỦA HÀNG</a></li>
+
+                    <li class="blog"><a class="a" href="blog">BLOG</a></li>
                     <li class="contact"><a class="a" href="contact.jsp">LIÊN HỆ</a></li>
 
                 </ul>
@@ -69,11 +69,11 @@
             <div class="icon-container">
                 <ul class="heart-shopping">
                     <li class="heart"><a href=""><i class="fas fa-heart"></i> <span>0</span></a></li>
-                    <li class="shopping-bag"><a href=""><i class="fas fa-shopping-bag"></i> <span>0</span></a></li>
+                    <li class="shopping-bag"><a href="pageCart"><i class="fas fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                 </ul>
                 <div class="price">
                     Mục chọn:
-                    <span>0 vnđ</span>
+                    <span id="span-money">0 vnđ</span>
                 </div>
             </div>
 
@@ -92,16 +92,18 @@
 
     </div>
     <div class="login-container">
-        <form action="index1.jsp">
+        <form id="form" method="post" action="login">
             <img class="avatar" src="login/image/undraw_profile_pic_ic5t.svg" alt="">
-            <h2>Đăng nhập</h2>
+            <h2>Đăng nhập</h2> <br>
+            <p style="color: red"><%= request.getAttribute("err") == null?"":request.getAttribute("err")%></p>
+
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
                 </div>
                 <div >
                     <h5>Tên đăng nhập</h5>
-                    <input class="input" type="text"   aria-describedby="basic-addon1" aria-label="Username" required="Email">
+                    <input name="username" value="<%=request.getParameter("username")==null?"":request.getParameter("username")%>" class="input" type="text"   aria-describedby="basic-addon1" aria-label="Username" required="Email">
 
 
                 </div>
@@ -112,15 +114,15 @@
                 </div>
                 <div>
                     <h5>Mật khẩu</h5>
-                    <input  class="input" type="password" id="password1" aria-describedby="basic-addon1" aria-label="Username" required="">
+                    <input name="password" class="input" type="password" id="password1" aria-describedby="basic-addon1" aria-label="Username" required="">
 
-                    <div class="icon" ><i class="fas fa-eye icon1" id="icon7"  onclick="myFuction()"></i>
-                        <i class="fas fa-eye-slash icon2" id="icon8"  onclick="myFuction()"></i>
+                    <div class="icon" ><i class="fas fa-eye icon1" id="icon7" onclick="myFuction()"></i>
+                        <i class="fas fa-eye-slash icon2" id="icon8" onclick="myFuction()" ></i>
                     </div>
 
                 </div>
             </div>
-            <a style="text-align: center;" href="forgotPassword.jsp" class="forgot-password"> Quên mật khẩu</a>
+            <a style="text-align: center;" href="/VYNLaptop/enterEmail.jsp" class="forgot-password"> Quên mật khẩu</a>
 
             <input type="submit" class="btn" value="Đăng nhập">
             <div class="text-login">
@@ -229,4 +231,4 @@
 
 
 </body>
-</html> 
+</html>

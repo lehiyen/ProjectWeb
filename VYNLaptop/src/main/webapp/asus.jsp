@@ -148,7 +148,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -182,11 +197,12 @@
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
+
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -273,9 +289,9 @@
     <div class="container">
         <div class="row featured__filter">
 <%--            start product--%>
-            <c:forEach items="${product}" var="p">
+    <c:forEach items="${product}" var="p">
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                <div class="featured__item">
+                <div class="featured__item" >
                     <div class="featured__item__pic set-bg" data-setbg="${p.hinhanh}">
                         <ul class="featured__item__pic__hover">
                             <li><a href="#" title="Mua"><i class="fa fa-shopping-cart"></i></a></li>
@@ -287,23 +303,31 @@
                         <h6><a href="/VYNLaptop/product?maSP=${p.maSP}">${p.tenSP}</a> <br><br></h6>
                         <h5>${p.gia} vnđ</h5> <br>
                         <div>
-                            <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button>
+                            <c:if test="${user!=null}"> <button id="${p.id}" style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-item"> Mua <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
+
+                            <c:if test="${user==null}"> <button  style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: black;" title="Mua" class="button-cart-login"> <i class="fa fa-shopping-cart" style="color: black"></i></button></c:if>
                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Thêm sản phẩm vào trang yêu thích"><i class="fa fa-heart" aria-hidden="true" style="color: white;"></i></button>
                             <button style="background-color:#bfebdc; border: 1px solid #bfebdc;border-radius: 2px; color: white;" title="Xem thông tin chi tiết sản phẩm"><a href="/VYNLaptop/product?maSP=${p.maSP}"><i class="fa fa-search-plus" aria-hidden="true" style="color: black;"></i></a></button>
                         </div>
                     </div>
                 </div>
             </div>
-            </c:forEach>
+    </c:forEach>
 <%--end product--%>
         </div>
     </div>
     <div class="product__pagination">
-        <a href="#"><i class="fa fa-long-arrow-left"></i></a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+        <c:if test="${pageCurrent !=1}">
+            <a href="/VYNLaptop/category?nameCategory=${p.name}?id=${pageCurrent-1}"><i class="fa fa-long-arrow-left"></i></a>
+        </c:if>
+        <c:forEach var="i" begin="${pageStart}" end = "${pageEnd}">
+
+            <a  href="/VYNLaptop/category?nameCategory=${p.name}?id=${i}" class="paginationActive" id="${i}" onsubmit="false">${i}</a>
+        </c:forEach>
+        <c:if test="${pageCurrent!=totalPage}">
+            <a href="/VYNLaptop/category?nameCategory=${p.name}?id=${pageCurrent+1}"><i class="fa fa-long-arrow-right"></i></a>
+        </c:if>
+
     </div>
 </section>
 <!-- Featured Section End -->
@@ -335,10 +359,10 @@
                         <li><a href="./phuongthucthanhtoan.jsp">Phương thức thanh toán</a></li>
                     </ul>
                     <ul>
-                        <li><a href="./login/Register.jsp">Đăng ký tài khoản</a></li>
-                        <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="/register.jsp">Đăng ký tài khoản</a></li>
+                        <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
 
-                        <li><a href="./blog.jsp">Blog</a></li>
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </div>
@@ -385,7 +409,46 @@
 <script src="js/mixitup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/ShoppingCart.js"></script>
+<script>
 
+
+
+    var listAdd = document.querySelectorAll(".button-cart-item")
+    listAdd.forEach(add =>{
+
+        add.addEventListener("click" ,() =>{
+
+
+
+
+            swal({
+                text: "Đã hêm vào giỏ hàng !",
+                icon: "success",
+                timer: 2000,
+                button: false,
+            });
+
+        })
+
+
+    })
+    var listlogin = document.querySelectorAll(".button-cart-login") ;
+    listlogin.forEach(login =>{
+        login.addEventListener("click" , () =>{
+            swal({
+                title : "Đăng nhập",
+                text: "Vui lòng đăng nhập !",
+                icon: "warning",
+
+                button: true,
+            });
+        })
+    })
+
+
+</script>
 
 
 </body>

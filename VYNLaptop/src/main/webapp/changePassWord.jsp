@@ -38,6 +38,8 @@
     <div class="loader"></div>
 </div>
 
+
+
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
@@ -47,29 +49,20 @@
     <div class="humberger__menu__cart">
         <ul>
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            <li><a href="shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
         <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
     </div>
     <div class="humberger__menu__widget">
 
         <div class="header__top__right__auth">
-            <ul>
-                <li class="image-avatar"><img style="width: 40px ; height: 40px; border: none ; border-radius: 50%;" src="img/product/acer/Acer_Aspire_5_A515-53G-71NN/acer1.png" alt="">
-                    <ul class="list-selection">
-                        <li><a href="User.jsp">Thông tin tài khoản</a></li>
-                        <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
-                        <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                        <li><a href="login.jsp">Đăng xuất</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
+            <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+            <li><a href="/VYNLaptop/shop">Cửa hàng</a></li>
             <!--<li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
                     <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -79,7 +72,7 @@
                 </ul>
             </li>
         -->
-            <li><a href="./blog.jsp">Blog</a></li>
+            <li><a href="/VYNLaptop/shop">Blog</a></li>
             <li><a href="./contact.jsp">Liên hệ</a></li>
         </ul>
     </nav>
@@ -122,16 +115,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <ul>
-                                <li class="image-avatar"><img style="width: 40px ; height: 40px; border: none ; border-radius: 50%;" src="img/product/acer/Acer_Aspire_5_A515-53G-71NN/acer1.png" alt="">
-                                    <ul class="list-selection">
-                                        <li><a href="User.jsp">Thông tin tài khoản</a></li>
-                                        <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
-                                        <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                                        <li><a href="login.jsp">Đăng xuất</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -142,14 +141,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li ><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="/VYNLaptop/home">Trang chủ</a></li>
+                        <li ><a href="/VYNLaptop/shop">Cửa hàng</a></li>
                         <!--<li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -158,8 +157,8 @@
                                 <li><a href="./blog-details.jsp">Blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="./blog.jsp">Giới thiệu</a></li>
-                        <li><a href="./contact.jsp">Liên hệ</a></li>
+                        <li><a href="/VYNLaptop/blog">Blog</a></li>
+                        <li ><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>
@@ -167,9 +166,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -191,17 +190,19 @@
                         <span>Tất cả dòng máy</span>
                     </div>
                     <ul>
-                        <li><a href="asus.jsp">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
+                        <c:forEach items="${category}" var="p">
+                            <li><a href="category?nameCategory=${p.name}">${p.name}</a></li>
+                            <%--                        <li><a href="#">ACER</a></li>--%>
+                            <%--                        <li><a href="#">HP</a></li>--%>
+                            <%--                        <li><a href="#">DELL</a></li>--%>
+                            <%--                        <li><a href="#">MACBOOK</a></li>--%>
+                            <%--                        <li><a href="#">THINKPAD</a></li>--%>
+                            <%--                        <li><a href="#">VIVO</a></li>--%>
+                            <%--                        <li><a href="#">SAMSUNG</a></li>--%>
+                            <%--                        <li><a href="#">LENOVO</a></li>--%>
+                            <%--                        <li><a href="#">SONY</a></li>--%>
+                            <%--                        <li><a href="#">TOSHIBA</a></li>--%>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -229,6 +230,7 @@
 </section>
 <!-- Hero Section End -->
 
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
     <div class="container">
@@ -237,7 +239,7 @@
                 <div class="breadcrumb__text">
                     <h2>VYNLaptop</h2>
                     <div class="breadcrumb__option">
-                        <a href="./index.jsp">Trang chủ</a>
+                        <a href="/VYNLaptop/home">Trang chủ</a>
                         <span>Thay đổi mật khẩu</span>
                     </div>
                 </div>
@@ -247,40 +249,39 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-
 <!--  Container -->
 <div class="change-password">
+    <form action="changePassWord" method="get">
     <div class="user-container">
-        <form action="">
+
             </section>
             <h3 class="user-h3">Thay đổi mật khẩu</h3>
             <section style="margin-bottom: 20px;">
-                <div class="user-div">
-                    <label class="label-of-email" >Email hoặc số điện thoại </label>
-                    <p>18130162@st.hcmuaf.edu.vn</p>
-                </div>
+                <p style="color: red"><%= request.getAttribute("mess") == null?"":request.getAttribute("mess")%></p>
+
                 <div class="user-div">
                     <label class="label-of-pass-old" for="surname">Mật khẩu cũ * </label>
-                    <input id="surname" name="surname" type="text" class="required form-control" value="">
+                    <input id="surname" name="oldpass" type="text" class="required form-control" value="">
                 </div>
                 <div class="user-div">
                     <label class="label-of-pass-new" for="email">Mật khẩu mới * </label>
-                    <input id="email" name="email" type="text" class="required email form-control" value="">
+                    <input id="email" name="newpass1" type="text" class="required email form-control" value="">
                 </div>
                 <div class="user-div">
                     <label class="label-of-repeat" for="address">Xác nhận lại mật khẩu *</label>
-                    <input id="address" name="address" type="text" class=" form-control" value="">
+                    <input id="address" name="newpass2" type="text" class=" form-control" value="">
                 </div>
                 <p style="color: red;"> * Bắt buộc nhập</p>
             </section>
-        </form>
 
     </div>
 
     <div class="line"></div>
-    <div class="div-btn"> <button class="save-info">Lưu</button></div>
+    <div class="div-btn"> <button type="submit" class="save-info">Lưu</button></div>
+    </form>
 </div>
 <!--  End container -->
+
 
 
 
@@ -351,6 +352,7 @@
 </footer>
 
 <!-- Footer Section End -->
+
 
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>

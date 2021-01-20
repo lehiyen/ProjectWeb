@@ -166,7 +166,22 @@
                         </div>
 
                         <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -177,14 +192,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
+                    <a href="home"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./index.jsp">Trang chủ</a></li>
-                        <li ><a href="./shop-grid.jsp">Cửa hàng</a></li>
+                        <li><a href="home">Trang chủ</a></li>
+                        <li ><a href="shop">Cửa hàng</a></li>
                         <!--<li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.jsp">Shop Details</a></li>
@@ -193,7 +208,7 @@
                                 <li><a href="./blog-details.jsp">Blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="./blog.jsp">Giới thiệu</a></li>
+                        <li><a href="./gioithieuVYN.jsp">Giới thiệu</a></li>
                         <li><a href="./contact.jsp">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -202,9 +217,9 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
+                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
                 </div>
             </div>
         </div>
@@ -220,25 +235,25 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>Tất cả dòng máy</span>
-                    </div>
-                    <ul>
-                        <li><a href="#">ASUS</a></li>
-                        <li><a href="#">ACER</a></li>
-                        <li><a href="#">HP</a></li>
-                        <li><a href="#">DELL</a></li>
-                        <li><a href="#">MACBOOK</a></li>
-                        <li><a href="#">THINKPAD</a></li>
-                        <li><a href="#">VIVO</a></li>
-                        <li><a href="#">SAMSUNG</a></li>
-                        <li><a href="#">LENOVO</a></li>
-                        <li><a href="#">SONY</a></li>
-                        <li><a href="#">TOSHIBA</a></li>
-                    </ul>
-                </div>
+<%--                <div class="hero__categories">--%>
+<%--                    <div class="hero__categories__all">--%>
+<%--                        <i class="fa fa-bars"></i>--%>
+<%--                        <span>Tất cả dòng máy</span>--%>
+<%--                    </div>--%>
+<%--                    <ul>--%>
+<%--                        <li><a href="#">ASUS</a></li>--%>
+<%--                        <li><a href="#">ACER</a></li>--%>
+<%--                        <li><a href="#">HP</a></li>--%>
+<%--                        <li><a href="#">DELL</a></li>--%>
+<%--                        <li><a href="#">MACBOOK</a></li>--%>
+<%--                        <li><a href="#">THINKPAD</a></li>--%>
+<%--                        <li><a href="#">VIVO</a></li>--%>
+<%--                        <li><a href="#">SAMSUNG</a></li>--%>
+<%--                        <li><a href="#">LENOVO</a></li>--%>
+<%--                        <li><a href="#">SONY</a></li>--%>
+<%--                        <li><a href="#">TOSHIBA</a></li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
             </div>
             <div class="col-lg-9">
                 <div class="hero__search">
