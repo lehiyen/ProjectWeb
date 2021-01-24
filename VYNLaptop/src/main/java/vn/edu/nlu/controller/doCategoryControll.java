@@ -24,40 +24,24 @@ public class doCategoryControll extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameCategory = request.getParameter("nameCategory");
-        String id = request.getParameter("id") ;
-        if(id==null)  {
-            id =  "1" ;
-        }
+        String indexString = request.getParameter("index") ;
+//        System.out.println(indexString);
 
-        int pageStart = 0 ;
-        int pageEnd = 0 ;
-        int totalPage = 0 ;
-        List<Product> lstProductByCatetegory = new ArrayList<>() ;
-        try {
-            Pagination pagination = new Pagination(16, 1, ProductEntity.getProductByCategory(nameCategory, id, totalPage).size());
-            pageStart = pagination.pageStart(id);
-            pageEnd = pagination.pageEnd(id);
-
-            totalPage = pagination.totalPage();
-            lstProductByCatetegory = new ProductEntity().getProductByCategory(nameCategory, id, pagination.getDisPlayProduct());
-
-        } finally {
-
-        }
+        int index = Integer.parseInt(indexString) ;
+        int proOfPage = 16;
         ProductEntity pe = new ProductEntity();
-//        List<Product> lstProductByCatetegory = pe.getProductByCategory(nameCategory);
+        int proOfSearch =pe.countProductCategory(nameCategory);
+        int endPage = proOfSearch/proOfPage;
+        if ( proOfSearch % proOfPage !=0){
+            endPage++;
+        }
 
-        List<Category> category = pe.getAllCategory();
-
+        List<Product> product = pe.getProductByCategory(nameCategory, index, proOfPage);
+        request.setAttribute("product",product);
+        Collection<Category> category = new ProductEntity().getAllCategory();
         request.setAttribute("category", category);
-        request.setAttribute("product", lstProductByCatetegory);
-        request.setAttribute("title", nameCategory);
-//        Collection<Category> categoryP = new ProductEntity().getAllCategory();
-//        request.setAttribute("category", categoryP);
-        request.setAttribute("pageStart" , pageStart);
-        request.setAttribute("pageEnd" , pageEnd);
-        request.setAttribute("pageCurrent" , id);
-        request.setAttribute("totalPage" , totalPage);
+        request.setAttribute("endPage", endPage);
+        request.setAttribute("nameCategory", nameCategory);
         request.getRequestDispatcher("asus.jsp").forward(request, response);
     }
 }

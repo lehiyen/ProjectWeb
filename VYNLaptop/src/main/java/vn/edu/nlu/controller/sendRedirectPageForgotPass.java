@@ -23,7 +23,7 @@ public class sendRedirectPageForgotPass extends HttpServlet {
         String timeNow = checkDateMonthYear.takeDateNow() ;
         String timeTakeDatabase = userEntity.takeTimeByEmail(mail);
        checkDateMonthYear.setDateReceive(timeNow);
-       checkDateMonthYear.setDateSend("15/01/2021 22:25:24");
+       checkDateMonthYear.setDateSend("23/01/2021 22:25:24");
         if(checkDateMonthYear.check())
             request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
 

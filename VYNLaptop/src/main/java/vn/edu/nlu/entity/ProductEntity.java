@@ -65,9 +65,11 @@ public class ProductEntity {
             List<Product> re = new LinkedList<>();
             while(rs.next()){
                 try {
-                    long priceSale = rs.getLong("gia") -
+                    long priceSale =rs.getLong("gia") -
                             rs.getLong("gia")*(rs.getInt("giamgia")/100);
-
+//                    System.out.println(rs.getInt("giamgia"));
+//                    System.out.println(rs.getLong("gia"));
+//                    System.out.println(priceSale);
                     re.add(new Product(rs.getString("id"),rs.getString("maSP"),
                             null, rs.getString("tenSP"),0, null,
                             null, rs.getInt("giamgia"), rs.getLong("gia"),
@@ -176,7 +178,7 @@ public class ProductEntity {
         try {
             Connection con = ConnectionDB.connect();
             String sql="insert into khachhang\n"
-                    +"values (?, ?, ?, null, null, null, null, null, ?, null, null, null)";
+                    +"values (?, ?, ?, null, null, null, null, null, ?, null, null, null,null)";
             s = con.prepareStatement(sql);
             s.setInt(1, id);
             s.setString(2, username);
@@ -254,17 +256,20 @@ public class ProductEntity {
         }
         return null;
     }
-    public static List<Product> getProductByCategory(String nameCategory, String id , int numberPagesize){
+    public static List<Product> getProductByCategory(String nameCategory, int index , int size){
         PreparedStatement s = null;
-        int  numPage = Integer.parseInt(id) ;
         try {
             Connection con = ConnectionDB.connect();
             String sql="select * from sanpham\n"
-                    +"where thuonghieu =?\n" +"limit ?,?";
+                    +"where thuonghieu =?\n" +"and id between ?*?-?+1 and ?*?";
             s = con.prepareStatement(sql);
             s.setString(1,nameCategory);
-            s.setInt(2 ,numberPagesize*(numPage-1));
-            s.setInt(3, numberPagesize);
+            s.setInt(2 ,size);
+            s.setInt(3, index);
+            s.setInt(4, size);
+            s.setInt(5, size);
+            s.setInt(6, index);
+
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
@@ -279,6 +284,25 @@ public class ProductEntity {
             e.printStackTrace();
             return new LinkedList<>();
         }
+    }
+    public  static int countProductCategory(String keyword) {
+        PreparedStatement s = null;
+        int re = 0;
+        try {
+            Connection con = ConnectionDB.connect();
+            String sql = "select * from sanpham where thuonghieu = ? ";
+            s = con.prepareStatement(sql);
+            s.setString(1,keyword );
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                re++;
+            }
+            rs.close();
+            s.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return re;
     }
 public List<Product> getSimilarProduct(String thuonghieu){
     PreparedStatement s = null;
@@ -325,20 +349,24 @@ public List<Product> getSimilarProduct(String thuonghieu){
         }
     }
     //phuong thuc tim kiem
-    public static List<Product> search(String keyword, String id , int numberPagesize){
+    public static List<Product> search(String keyword, int index , int size){
         PreparedStatement s = null;
-        int  numPage = Integer.parseInt(id) ;
         try {
             Connection con = ConnectionDB.connect();
-            String sql="select * from sanpham where tenSP like ? limit ?,?";
+            String sql=" with x as(select ROW_NUMBER() over(ORDER BY id asc) r\n" +
+                    " , sanpham.* from sanpham where tenSP like ?)\n" +
+                    "select * from x where r between ?*?-?+1 and ?*?";
             s = con.prepareStatement(sql);
             s.setString(1, "%"+keyword+"%");
-            s.setInt(2 ,numberPagesize*(numPage-1));
-            s.setInt(3,numberPagesize);
+            s.setInt(2 ,size);
+            s.setInt(4 ,size);
+            s.setInt(3,index);
+            s.setInt(5,index);
+            s.setInt(6,size);
             ResultSet rs = s.executeQuery();
             List<Product> re = new LinkedList<>();
             while(rs.next()){
-                long priceSale = rs.getLong("gia") - rs.getLong("gia")*rs.getInt("giamgia")/100;
+                long priceSale = rs.getLong("gia") - rs.getLong("gia")*(rs.getInt("giamgia")/100);
                 re.add(new Product(rs.getString("id"),rs.getString("maSP"), null, rs.getString("tenSP"),0, null, null, rs.getInt("giamgia"), rs.getLong("gia"),0, rs.getString("hinhanh"), 0, 0, priceSale, rs.getString("motaSP")
                 ));
             }
@@ -350,6 +378,25 @@ public List<Product> getSimilarProduct(String thuonghieu){
             return new LinkedList<>();
         }
     }
+    public  static int countProductSearch(String keyword) {
+        PreparedStatement s = null;
+        int re = 0;
+        try {
+            Connection con = ConnectionDB.connect();
+            String sql = "select * from sanpham where tenSP like ? ";
+            s = con.prepareStatement(sql);
+            s.setString(1, "%" + keyword + "%");
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                re++;
+            }
+            rs.close();
+            s.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return re;
+    }
 
 
 
@@ -357,8 +404,9 @@ public List<Product> getSimilarProduct(String thuonghieu){
         ProductEntity pe = new ProductEntity();
 //        pe.updateInfoKhachHang("yen", "Yen", "Le", 980938786, "Binh Dinh");
 //List<Product> re = pe.getDiscountProducts();
-
-
+//        System.out.println(countProductSearch("asus"));
+//        System.out.println(pe.search("asus", 3, 12).size());
+        System.out.println(pe.countProductCategory("asus"));
 
 
 

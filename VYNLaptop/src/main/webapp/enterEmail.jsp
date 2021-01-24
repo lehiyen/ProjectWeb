@@ -17,7 +17,38 @@
     <link rel="stylesheet" href="login/style/style.css">
 
     <title>Forgot password</title>
+<style>
+    .image-avatar{
+        position: relative;
+    }
+    .list-selection li a {
+        color:white;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
 
+    .list-selection{
+        position: absolute;
+        z-index: 10;
+        visibility: hidden;
+        background:#38d39f;
+        width: 150px;
+        opacity: 0;
+        transition: .3s;
+        top: 80px;
+    }
+    .image-avatar:hover .list-selection{
+        top: 20px;
+        opacity: 1;
+        visibility: visible;
+    }
+    .image-avatar:hover .list-selection li a:hover{
+        border: 1px solid #38d39f;
+        background: white;
+        color: #38d39f;
+    }
+</style>
 </head>
 <body>
 <header >

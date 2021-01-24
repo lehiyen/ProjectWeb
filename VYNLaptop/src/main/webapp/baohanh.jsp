@@ -38,6 +38,36 @@
         .baohanh .info{
             margin: 20px;
         }
+        .image-avatar{
+            position: relative;
+        }
+        .list-selection li a {
+            color:white;
+            text-align: left;
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+
+        .list-selection{
+            position: absolute;
+            z-index: 10;
+            visibility: hidden;
+            background:#38d39f;
+            width: 150px;
+            opacity: 0;
+            transition: .3s;
+            top: 80px;
+        }
+        .image-avatar:hover .list-selection{
+            top: 20px;
+            opacity: 1;
+            visibility: visible;
+        }
+        .image-avatar:hover .list-selection li a:hover{
+            border: 1px solid #38d39f;
+            background: white;
+            color: #38d39f;
+        }
 
     </style>
 </head>
@@ -69,144 +99,13 @@
 </div>
 
 <!-- Humberger Begin -->
-<div class="humberger__menu__overlay"></div>
-<div class="humberger__menu__wrapper">
-    <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
-    </div>
-    <div class="humberger__menu__cart">
-        <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-        </ul>
-        <div class="header__cart__price">Mục chọn: <span>0 vnđ</span></div>
-    </div>
-    <div class="humberger__menu__widget">
-
-        <div class="header__top__right__auth">
-            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-        </div>
-    </div>
-    <nav class="humberger__menu__nav mobile-menu">
-        <ul>
-            <li><a href="./index.jsp">Trang chủ</a></li>
-            <li><a href="./shop-grid.jsp">Cửa hàng</a></li>
-            <!--<li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.jsp">Shop Details</a></li>
-                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                    <li><a href="./checkout.jsp">Check Out</a></li>
-                    <li><a href="./blog-details.jsp">Blog Details</a></li>
-                </ul>
-            </li>
-        -->
-            <li><a href="./blog.jsp">Blog</a></li>
-            <li><a href="./contact.jsp">Liên hệ</a></li>
-        </ul>
-    </nav>
-    <div id="mobile-menu-wrap"></div>
-    <div class="header__top__right__social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-    </div>
-    <div class="humberger__menu__contact">
-        <ul>
-            <li><i class="fa fa-envelope"></i> vynLaptop@gmail.com</li>
-            <li></li>
-        </ul>
-    </div>
-</div>
+<jsp:include page="humberger.jsp"></jsp:include>
 <!-- Humberger End -->
 
+
 <!-- Header Section Begin -->
-<header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__left">
-                        <ul>
-                            <li><i class="fa fa-envelope"></i> vynLaptop@gmail.com</li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        </div>
-
-                        <div class="header__top__right__auth">
-                            <c:if test="${user!=null}">
-                                <ul>
-                                    <li class="image-avatar">
-                                        <i class="fa fa-user"> <span>${user.username}</span></i>
-                                        <ul class="list-selection">
-                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
-                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
-                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
-                                            <li><a href="login.jsp">Đăng xuất</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </c:if>
-                            <c:if test="${user==null}">
-                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-                            </c:if>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="header__logo">
-                    <a href="/VYNLaptop/home"><img src="img/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <nav class="header__menu">
-                    <ul>
-                        <li><a href="/VYNLaptop/home">Trang chủ</a></li>
-                        <li ><a href="/VYNLaptop/shop">Cửa hàng</a></li>
-                        <!--<li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.jsp">Shop Details</a></li>
-                                <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                <li><a href="./checkout.jsp">Check Out</a></li>
-                                <li><a href="./blog-details.jsp">Blog Details</a></li>
-                            </ul>
-                        </li> -->
-                        <li><a href="/VYNLaptop/blog">Blog</a></li>
-                        <li><a href="./contact.jsp">Liên hệ</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-3">
-                <div class="header__cart">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="/VYNLatop/pageCart"><i class="fa fa-shopping-bag"></i> <span id="text-bag"><%=request.getAttribute("bag")==null?0 : request.getAttribute("bag") %></span></a></li>
-                    </ul>
-                    <div class="header__cart__price">Mục chọn: <span id="span-money">0 vnđ</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="humberger__open">
-            <i class="fa fa-bars"></i>
-        </div>
-    </div>
-</header>
-<!-- Header Section End -->
-
+<jsp:include page="header.jsp"></jsp:include>
+<!-- HeaderEnd -->
 <!-- Hero Section Begin -->
 <section class="hero hero-normal">
     <div class="container">
@@ -313,70 +212,7 @@
 
 
 <!-- Footer Section Begin -->
-<footer class="footer spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
-                    <div class="footer__about__logo">
-                        <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
-                    </div>
-                    <ul>
-                        <li><p style="color: black;">Địa chỉ: 113/1/8 Hoàng Diệu 2, phường Linh Trung, quận Thủ Đức</p></li>
-                        <li><p style="color: black;">Số điện thoại: +0378900954</p></li>
-                        <li><p style="color: black;">Email: vynLaptop@gmail.com</li></p>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div class="footer__widget">
-                    <h6>Liên kết hữu ích</h6>
-                    <ul>
-                        <li><a href="./gioithieuVYN.jsp"><p style="margin-bottom: 5px;" >Giới thiệu VYNLaptop</p></a></li>
-                        <li><a href="./baohanh.jsp"><p style="margin-bottom: 5px;" >Bảo hành</p></a></li>
-                        <li><a href="./baomatthongtin.jsp"><p style="margin-bottom: 5px;">Bảo mật thông tin</p></a></li>
-                        <li><a href="./phuongthucthanhtoan.jsp"><p style="margin-bottom: 5px;">Phương thức thanh toán</p></a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="register.jsp"><p style="margin-bottom: 5px;">Đăng ký tài khoản</p></a></li>
-                        <li><a href="/VYNLaptop/shop"><p style="margin-bottom: 5px;">Cửa hàng</p></a></li>
-
-                        <li><a href="/VYNLaptop/blog"><p style="margin-bottom: 5px;">Blog</p></a></li>
-                        <li><a href="./contact.jsp"><p style="margin-bottom: 5px;">Liên hệ</p></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="footer__widget">
-                    <h6>Ủng hộ chúng tôi</h6>
-                    <p>Nhận thông tin cập nhật qua email về cửa hàng mới nhất của chúng tôi và các ưu đãi đặc biệt.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Nhập email">
-                        <button type="submit" class="site-btn">Gửi </button>
-                    </form>
-                    <div class="footer__widget__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer__copyright">
-                    <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
+<jsp:include page="footer.jsp"></jsp:include>
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->

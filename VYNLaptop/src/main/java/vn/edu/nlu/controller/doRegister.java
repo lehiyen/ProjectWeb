@@ -31,7 +31,7 @@ public class doRegister extends HttpServlet {
             if (k == null) {
                 pe.register(name,pass1,email);
 
-                response.sendRedirect("home");
+                response.sendRedirect("login.jsp");
             } else {
                 request.getRequestDispatcher("register.jsp").forward(request,response);
             }

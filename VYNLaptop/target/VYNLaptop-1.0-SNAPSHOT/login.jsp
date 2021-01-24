@@ -11,7 +11,38 @@
     <link rel="stylesheet" href="login/style/style.css">
 <%--    <link rel="stylesheet" href="css/style.css">--%>
     <title>Login</title>
+<style>
+    .image-avatar{
+        position: relative;
+    }
+    .list-selection li a {
+        color:white;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
 
+    .list-selection{
+        position: absolute;
+        z-index: 10;
+        visibility: hidden;
+        background:#38d39f;
+        width: 150px;
+        opacity: 0;
+        transition: .3s;
+        top: 80px;
+    }
+    .image-avatar:hover .list-selection{
+        top: 20px;
+        opacity: 1;
+        visibility: visible;
+    }
+    .image-avatar:hover .list-selection li a:hover{
+        border: 1px solid #38d39f;
+        background: white;
+        color: #38d39f;
+    }
+</style>
 </head>
 <body>
 <header >
@@ -36,7 +67,22 @@
 
 
                         <div class="right_3">
-                            <a href="login.jsp"> <i class="fas fa-user"></i> Đăng nhập</a>
+                            <c:if test="${user!=null}">
+                                <ul>
+                                    <li class="image-avatar">
+                                        <i class="fa fa-user"> <span>${user.username}</span></i>
+                                        <ul class="list-selection">
+                                            <li><a href="User.jsp">Thông tin tài khoản</a></li>
+                                            <li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
+                                            <li><a href="HoaDon.jsp">Hóa đơn mua hàng</a> </li>
+                                            <li><a href="login.jsp">Đăng xuất</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </c:if>
+                            <c:if test="${user==null}">
+                                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </c:if>
 
                         </div>
 

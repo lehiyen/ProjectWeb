@@ -48,8 +48,8 @@ public class doShop extends HttpServlet {
         request.setAttribute("pageEnd" , pageEnd);
         request.setAttribute("pageCurrent" , id);
         request.setAttribute("totalPage" , totalPage);
-        System.out.println(pageEnd);
-        System.out.println(pageStart);
+//        System.out.println(pageEnd);
+//        System.out.println(pageStart);
 
 //        Collection<Product> value = new ProductEntity().getAllProduct(id, totalPage);
 //        request.setAttribute("list5_2", value);

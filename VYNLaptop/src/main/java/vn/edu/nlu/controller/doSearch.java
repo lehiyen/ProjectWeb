@@ -24,30 +24,25 @@ public class doSearch extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
-        String id = request.getParameter("id") ;
-        if(id==null)  {
-            id =  "1" ;
+//        System.out.println(keyword);
+        String indexString = request.getParameter("index") ;
+//        System.out.println(indexString);
+        int index = Integer.parseInt(indexString);
+//        int index = 1;
+//        System.out.println(index);
+        ProductEntity pe = new ProductEntity();
+        int proOfPage = 12;
+        int proOfSearch =pe.countProductSearch(keyword);
+        int endPage = proOfSearch/proOfPage;
+        if ( proOfSearch % proOfPage !=0){
+            endPage++;
         }
-
-        int pageStart = 0 ;
-        int pageEnd = 0 ;
-        int totalPage = 0 ;
-        List<Product> value = new ArrayList<>() ;
-        try {
-            Pagination pagination = new Pagination(9, 1, ProductEntity.search(keyword, id, totalPage).size());
-            pageStart = pagination.pageStart(id);
-            pageEnd = pagination.pageEnd(id);
-
-            totalPage = pagination.totalPage();
-            value = new ProductEntity().search(keyword, id, pagination.getDisPlayProduct());
-
-        } finally {
-
-        }
-//        Collection<Product> value = new ProductEntity().search(keyword);
+        Collection<Product> value = new ProductEntity().search(keyword, index, proOfPage);
         request.setAttribute("list_KQTK", value);
         Collection<Category> category = new ProductEntity().getAllCategory();
         request.setAttribute("category", category);
+        request.setAttribute("endPage", endPage);
+        request.setAttribute("keyword", keyword);
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 }

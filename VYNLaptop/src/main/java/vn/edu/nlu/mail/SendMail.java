@@ -24,8 +24,8 @@ public class SendMail {
         pro.put("mail.smtp.auth" , "true");
         pro.put("mail.smtp.starttls.enable" ,"true");
 
-    String username = "lehaiyen05082000@gmail.com" ;
-    String password = "uwicrsybniclkttr" ;
+    String username = "lehiyn580@gmail.com" ;
+    String password = "kzrhiayxuwbcqpbg" ;
     Session session = Session.getInstance(pro,
             new Authenticator() {
         @Override
@@ -36,7 +36,7 @@ public class SendMail {
         Message message = new MimeMessage(session) ;
         try{
             String mess = "http://localhost:8080/VYNLaptop/sendRedirectPageForgotPass?mail="+getDesMail() ;
-            message.setFrom(new InternetAddress("lehaiyen05082000@gmail.com" , "Shop Laptop VYN"));
+            message.setFrom(new InternetAddress("lehiyn580@gmail.com" , "Shop Laptop VYN"));
             message.setRecipients(Message.RecipientType.TO ,
                     InternetAddress.parse(getDesMail()));
             message.setSubject("Đặt lại mật khẩu");

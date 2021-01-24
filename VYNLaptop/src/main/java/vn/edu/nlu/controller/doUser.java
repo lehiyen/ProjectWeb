@@ -24,11 +24,11 @@ public class doUser extends HttpServlet {
         String surname = request.getParameter("surname");
         int sdt = Integer.valueOf(request.getParameter("sdt"));
         String address = request.getParameter("address");
-        System.out.println(username);
-        System.out.println(name);
-        System.out.println(surname);
-        System.out.println(sdt);
-        System.out.println(address);
+//        System.out.println(username);
+//        System.out.println(name);
+//        System.out.println(surname);
+//        System.out.println(sdt);
+//        System.out.println(address);
         ProductEntity pe = new ProductEntity();
 
 

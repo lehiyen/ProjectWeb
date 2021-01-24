@@ -133,7 +133,7 @@ public class Product implements Serializable {
         return trangthai;
     }
     public long getGiasaugiam(){
-        return getGia() - getGia()*(getGiamgia()/100);
+        return giasaugiam =getGia() - getGia()*((long) (getGiamgia()/100));
     }
 
     public void setId(String id) {
